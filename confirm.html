@@ -191,7 +191,7 @@
 <script>
 "use strict";
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJmoNw-ilUhmtXvorwxNPVjoe9y_g7Kcwyos4HGB1Qae9Rt9vTzYeZV2A_w2rzU3IzlQ/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnyHeigoZkzPC34XGKrv9t0OtAw7SFlQll7gzjFZd4lZk-bZCLWd6CGNgE1RBqon8prg/exec";
 
 const params = new URLSearchParams(window.location.search);
 const bookingId = params.get("id");
@@ -274,7 +274,7 @@ async function cancelBooking(id, name) {
 
   try {
     const p = new URLSearchParams({ action: "cancel", id });
-    const res  = await fetch(APPS_SCRIPT_URL, { method:"POST", body: p });
+    const res  = await fetch(APPS_SCRIPT_URL, { method:"GET", body: p });
     const data = await res.json();
     if (data.ok) showCancelled();
   } catch(e) {
