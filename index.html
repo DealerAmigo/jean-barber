@@ -20,7 +20,6 @@
     body{background:var(--black);color:var(--silver-light);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;overflow-x:hidden}
     ::selection{background:var(--gold);color:#000}
     ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--dark-1)}::-webkit-scrollbar-thumb{background:var(--silver-dim)}
-
     #hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 1.5rem 7rem;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% -10%,#221c0c 0%,transparent 60%),var(--black)}
     #hero::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.035;pointer-events:none}
     .drop-line{position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--gold))}
@@ -37,14 +36,12 @@
     .scroll-hint{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:up 1.5s ease 1.2s both;z-index:1}
     .scroll-line{width:1px;height:42px;background:linear-gradient(to bottom,var(--gold),transparent);animation:pulse 2s ease-in-out infinite}
     .scroll-text{font-size:.55rem;letter-spacing:.45em;color:var(--silver-dim);text-transform:uppercase}
-
     .section{max-width:820px;margin:0 auto;padding:6rem 1.5rem}
     .sec-label{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
     .sec-label-line{flex:1;height:1px;background:var(--dark-4)}
     .sec-label-text{font-size:.95rem;font-weight:700;letter-spacing:.5em;color:var(--gold);text-transform:uppercase}
     .sec-title{font-family:var(--font-display);font-size:clamp(2rem,7vw,3.8rem);font-weight:300;color:var(--white);margin-bottom:.5rem}
     .sec-sub{font-size:1.2rem;color:var(--silver);letter-spacing:.04em;margin-bottom:3rem}
-
     #gallery{border-top:1px solid var(--dark-3)}
     .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
     .gallery-cell{aspect-ratio:1;overflow:hidden;background:var(--dark-2);position:relative}
@@ -53,7 +50,6 @@
     .gallery-cell:hover img{transform:scale(1.06)}
     .gallery-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dark-2),var(--dark-3))}
     .gallery-ph-num{font-family:var(--font-display);font-size:1.5rem;color:var(--silver-dim);opacity:.3;font-style:italic}
-
     #reviews{border-top:1px solid var(--dark-3)}
     .reviews-track-wrap{position:relative;overflow:hidden}
     .reviews-track-wrap::before,.reviews-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:50px;z-index:2;pointer-events:none}
@@ -72,7 +68,6 @@
     .reviews-dots{display:flex;gap:6px;align-items:center}
     .reviews-dot{width:5px;height:5px;background:var(--dark-4);border-radius:50%;transition:all .3s;cursor:pointer;border:none;padding:0}
     .reviews-dot.active{background:var(--gold);width:18px;border-radius:3px}
-
     #location{border-top:1px solid var(--dark-3)}
     .map-card{border:1px solid var(--dark-3);overflow:hidden;background:var(--dark-1)}
     .map-visual{width:100%;height:220px;background:var(--dark-2);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer}
@@ -90,7 +85,6 @@
     .map-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:.65rem 1.2rem;font-family:var(--font-ui);font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .25s}
     .map-cta:hover{background:var(--gold);color:#000}
     .map-cta svg{width:12px;height:12px}
-
     #booking{border-top:1px solid var(--dark-3)}
     .form-card:hover{transform:perspective(800px) rotateX(0deg) translateY(-4px);box-shadow:0 2px 0 rgba(184,151,90,.2) inset,0 -2px 0 rgba(0,0,0,.6) inset,4px 4px 0 rgba(0,0,0,.3),8px 8px 0 rgba(0,0,0,.15),0 28px 50px rgba(0,0,0,.6)}
     .form-card{background:linear-gradient(160deg,#1a1508 0%,#111111 50%,#0c0c0c 100%);border:1px solid rgba(184,151,90,.25);border-top:1px solid rgba(184,151,90,.6);border-bottom:1px solid rgba(0,0,0,.8);padding:2.5rem 2rem;box-shadow:0 2px 0 rgba(184,151,90,.15) inset,0 -2px 0 rgba(0,0,0,.6) inset,4px 4px 0 rgba(0,0,0,.4),8px 8px 0 rgba(0,0,0,.2),12px 12px 0 rgba(0,0,0,.08),0 20px 40px rgba(0,0,0,.5);transform:perspective(800px) rotateX(1deg);transition:transform .3s ease,box-shadow .3s ease}
@@ -122,39 +116,22 @@
     .success-title{font-family:var(--font-display);font-size:clamp(1.8rem,6vw,2.8rem);font-weight:300;color:var(--white);margin-bottom:1rem}
     .success-text{font-size:1.25rem;color:var(--silver-mid);line-height:1.9}
     .success-text strong{color:var(--gold)}
-    /* ── NUEVO: botón de ver confirmación ── */
     .confirm-link-btn{display:inline-block;margin-top:1.5rem;padding:.9rem 2rem;border:1px solid var(--gold);color:var(--gold);font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .25s}
     .confirm-link-btn:hover{background:var(--gold);color:#000}
-
     #wa-btn{position:fixed;bottom:2rem;right:1.8rem;z-index:999;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.4);animation:wa-float 3s ease-in-out infinite;transition:transform .2s ease}
     #wa-btn:hover{transform:scale(1.12)}
     #wa-btn:active{transform:scale(.96)}
     #wa-icon{width:30px;height:30px;color:#fff;flex-shrink:0}
-    @keyframes wa-float{
-      0%,100%{transform:translateY(0);box-shadow:0 4px 20px rgba(37,211,102,.35),0 4px 20px rgba(0,0,0,.4)}
-      50%{transform:translateY(-8px);box-shadow:0 12px 30px rgba(37,211,102,.5),0 8px 24px rgba(0,0,0,.3)}
-    }
-
+    @keyframes wa-float{0%,100%{transform:translateY(0);box-shadow:0 4px 20px rgba(37,211,102,.35),0 4px 20px rgba(0,0,0,.4)}50%{transform:translateY(-8px);box-shadow:0 12px 30px rgba(37,211,102,.5),0 8px 24px rgba(0,0,0,.3)}}
     footer{border-top:1px solid var(--dark-3);text-align:center;padding:3rem 1.5rem 4rem}
     .footer-rule{width:28px;height:1px;background:var(--gold);margin:0 auto 1.4rem}
     .footer-name{font-size:1.1rem;font-weight:600;letter-spacing:.28em;color:var(--silver-dim);text-transform:uppercase}
     .footer-note{font-size:1rem;letter-spacing:.1em;color:var(--silver-dim);opacity:.35;margin-top:.4rem}
-
     @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
     @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
     .reveal.on{opacity:1;transform:none}
-
-    @media(max-width:520px){
-      .gallery-grid{grid-template-columns:repeat(2,1fr)}
-      .form-card{padding:1.8rem 1.2rem}
-      #wa-btn{bottom:1.4rem;right:1.2rem;width:52px;height:52px}
-      #wa-icon{width:23px;height:23px}
-      .review-card{flex:0 0 240px}
-      .map-footer{flex-direction:column;align-items:flex-start}
-    }
-
-    /* CHATBOT */
+    @media(max-width:520px){.gallery-grid{grid-template-columns:repeat(2,1fr)}.form-card{padding:1.8rem 1.2rem}#wa-btn{bottom:1.4rem;right:1.2rem;width:52px;height:52px}#wa-icon{width:23px;height:23px}.review-card{flex:0 0 240px}.map-footer{flex-direction:column;align-items:flex-start}}
     #chat-widget{position:fixed;bottom:2rem;left:1.8rem;z-index:998;display:flex;flex-direction:column;align-items:flex-start;opacity:0;pointer-events:none;transition:opacity .4s ease,transform .4s ease;transform:translateY(20px)}
     #chat-widget.visible{opacity:1;pointer-events:all;transform:translateY(0)}
     #chat-bubble{width:62px;height:62px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.4);animation:chat-float 3s ease-in-out infinite;transition:transform .2s ease;flex-shrink:0;position:relative}
@@ -192,7 +169,6 @@
   </style>
 </head>
 <body>
-
   <section id="hero">
     <div class="drop-line"></div>
     <p class="hero-ornament">✦ &nbsp; ✦ &nbsp; ✦</p>
@@ -203,7 +179,6 @@
     <button class="hero-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Reserva tu Cita</button>
     <div class="scroll-hint"><div class="scroll-line"></div><span class="scroll-text">ver más</span></div>
   </section>
-
   <section id="gallery" class="section">
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Portafolio</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">El Trabajo</h2>
@@ -217,7 +192,6 @@
       <div class="gallery-cell"><img src="" alt="Completo" onload="this.classList.add('loaded')"/><div class="gallery-ph"><span class="gallery-ph-num">06</span></div></div>
     </div>
   </section>
-
   <section id="reviews" class="section">
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Clientes</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">Lo Que Dicen</h2>
@@ -236,16 +210,13 @@
       <button class="reviews-btn" id="rev-next" aria-label="Siguiente">&#8594;</button>
     </div>
   </section>
-
   <section id="location" class="section">
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Ubicación</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">Encuéntranos</h2>
     <p class="sec-sub reveal">Toca el mapa para preguntarle a Jean la dirección.</p>
     <div class="map-card reveal">
       <a href="https://wa.me/17875301101?text=Hola%20Jean%2C%20%C2%BFme%20puedes%20dar%20la%20direcci%C3%B3n%20de%20tu%20barbershop%3F" target="_blank" rel="noopener" style="display:block;text-decoration:none">
-        <div class="map-visual">
-          <div class="map-pin"><div class="map-pulse"></div><div class="map-pin-dot"></div><div class="map-pin-shadow"></div></div>
-        </div>
+        <div class="map-visual"><div class="map-pin"><div class="map-pulse"></div><div class="map-pin-dot"></div><div class="map-pin-shadow"></div></div></div>
       </a>
       <div class="map-footer">
         <div class="map-address"><strong>Jean The Barber</strong>Puerto Rico · Dirección por confirmar</div>
@@ -256,20 +227,13 @@
       </div>
     </div>
   </section>
-
   <section id="booking" class="section">
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Reservaciones</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">Agenda tu Cita</h2>
     <p class="sec-sub reveal">Selecciona un horario disponible. Te confirmamos al instante.</p>
     <div id="form-wrapper" class="form-card reveal">
-      <div class="form-field">
-        <label class="form-label" for="inp-name">Nombre Completo *</label>
-        <input id="inp-name" class="form-input" type="text" placeholder="Tu nombre" autocomplete="name"/>
-      </div>
-      <div class="form-field">
-        <label class="form-label" for="inp-phone">Número de Teléfono *</label>
-        <input id="inp-phone" class="form-input" type="tel" placeholder="+1 (787) 000-0000" autocomplete="tel"/>
-      </div>
+      <div class="form-field"><label class="form-label" for="inp-name">Nombre Completo *</label><input id="inp-name" class="form-input" type="text" placeholder="Tu nombre" autocomplete="name"/></div>
+      <div class="form-field"><label class="form-label" for="inp-phone">Número de Teléfono *</label><input id="inp-phone" class="form-input" type="tel" placeholder="+1 (787) 000-0000" autocomplete="tel"/></div>
       <div class="form-field">
         <label class="form-label" for="inp-service">Servicio *</label>
         <select id="inp-service" class="form-select">
@@ -281,18 +245,9 @@
           <option value="Lineup">Lineup / Edge Up · 20 min · $15</option>
         </select>
       </div>
-      <div class="form-field">
-        <label class="form-label">Selecciona el Día *</label>
-        <div id="date-pills" class="date-pills"></div>
-      </div>
-      <div class="form-field" id="time-field" style="display:none">
-        <label class="form-label">Horarios Disponibles *</label>
-        <div id="time-grid" class="time-grid"></div>
-      </div>
-      <div class="form-field">
-        <label class="form-label" for="inp-notes">Notas (opcional)</label>
-        <textarea id="inp-notes" class="form-textarea" rows="3" placeholder="Alguna preferencia o detalle..."></textarea>
-      </div>
+      <div class="form-field"><label class="form-label">Selecciona el Día *</label><div id="date-pills" class="date-pills"></div></div>
+      <div class="form-field" id="time-field" style="display:none"><label class="form-label">Horarios Disponibles *</label><div id="time-grid" class="time-grid"></div></div>
+      <div class="form-field"><label class="form-label" for="inp-notes">Notas (opcional)</label><textarea id="inp-notes" class="form-textarea" rows="3" placeholder="Alguna preferencia o detalle..."></textarea></div>
       <div id="form-error" class="form-error" style="display:none"></div>
       <button id="submit-btn" class="submit-btn" onclick="handleSubmit()" disabled>Confirmar Solicitud de Cita →</button>
       <p class="form-disc">* Jean te confirmará por WhatsApp en breve.</p>
@@ -302,31 +257,21 @@
       <h3 class="success-title">¡Solicitud Enviada!</h3>
       <p class="success-text">Tu cita fue registrada.<br/><strong>Jean te confirmará por WhatsApp en breve.</strong></p>
       <p class="success-text" style="margin-top:.8rem;font-size:.9rem;opacity:.6">Nos comunicaremos al <span id="confirm-phone"></span>.</p>
-      <!-- NUEVO: link a la página de confirmación -->
       <a id="confirm-link" class="confirm-link-btn" href="#" target="_blank">Ver detalles de mi cita →</a>
     </div>
   </section>
-
   <a id="wa-btn" href="https://wa.me/17875301101?text=Hola%20Jean%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20informaci%C3%B3n%20sobre%20una%20cita." target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg id="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.848 0-3.58-.504-5.072-1.383l-.36-.214-4.56 1.074 1.11-4.42-.23-.373A9.953 9.953 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.3 5.5c-.22 0-.576.082-.878.408-.303.326-1.156 1.13-1.156 2.754 0 1.625 1.183 3.195 1.347 3.416.165.22 2.31 3.682 5.682 5.016 2.814 1.11 3.385.89 3.996.834.61-.055 1.97-.805 2.248-1.582.278-.777.278-1.443.194-1.582-.083-.138-.303-.22-.636-.386-.332-.165-1.97-.972-2.274-1.082-.303-.11-.524-.165-.745.165-.22.33-.856 1.082-1.05 1.303-.192.22-.385.248-.717.083-.332-.166-1.402-.517-2.67-1.648-.987-.88-1.653-1.966-1.847-2.298-.193-.33-.02-.51.146-.674.149-.148.332-.385.498-.578.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.578-.083-.165-.737-1.796-1.022-2.455-.268-.63-.543-.544-.745-.554-.192-.009-.413-.011-.634-.011z"/>
-    </svg>
+    <svg id="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.848 0-3.58-.504-5.072-1.383l-.36-.214-4.56 1.074 1.11-4.42-.23-.373A9.953 9.953 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.3 5.5c-.22 0-.576.082-.878.408-.303.326-1.156 1.13-1.156 2.754 0 1.625 1.183 3.195 1.347 3.416.165.22 2.31 3.682 5.682 5.016 2.814 1.11 3.385.89 3.996.834.61-.055 1.97-.805 2.248-1.582.278-.777.278-1.443.194-1.582-.083-.138-.303-.22-.636-.386-.332-.165-1.97-.972-2.274-1.082-.303-.11-.524-.165-.745.165-.22.33-.856 1.082-1.05 1.303-.192.22-.385.248-.717.083-.332-.166-1.402-.517-2.67-1.648-.987-.88-1.653-1.966-1.847-2.298-.193-.33-.02-.51.146-.674.149-.148.332-.385.498-.578.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.578-.083-.165-.737-1.796-1.022-2.455-.268-.63-.543-.544-.745-.554-.192-.009-.413-.011-.634-.011z"/></svg>
   </a>
-
   <footer>
     <div class="footer-rule"></div>
     <p class="footer-name">Jean The Barber</p>
     <p class="footer-note">Disponibilidad en tiempo real · Confirmación por WhatsApp</p>
   </footer>
-
-  <!-- CHATBOT -->
   <div id="chat-widget">
     <div id="chat-box">
       <div class="chat-header">
-        <div>
-          <div class="chat-header-name">✂ Asistente de Jean</div>
-          <div class="chat-header-sub">Reserva en segundos</div>
-        </div>
+        <div><div class="chat-header-name">✂ Asistente de Jean</div><div class="chat-header-sub">Reserva en segundos</div></div>
         <button class="chat-close" onclick="closeChat()">✕</button>
       </div>
       <div class="chat-messages" id="chat-messages"></div>
@@ -339,25 +284,18 @@
     <div id="chat-bubble" onclick="toggleChat()">
       <div id="chat-notif">1</div>
       <div id="chat-label">¡Nuevo mensaje!</div>
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
     </div>
   </div>
-
   <script>
     "use strict";
-
-    // ── CONFIGURACIÓN ─────────────────────────────────────────
-    const APPS_SCRIPT_URL = "https://https://script.google.com/macros/s/AKfycbwLAZC0BzC28qObVgZsWBpiq3amAi4kay2C11yGvlgwSA9jaFExJo6xwkfmdhtiC3SNyg/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnyHeigoZkzPC34XGKrv9t0OtAw7SFlQll7gzjFZd4lZk-bZCLWd6CGNgE1RBqon8prg/exec";
     const BARBER_PHONE    = "17875301101";
-    const CONFIRM_BASE    = "confirm.html"; // ruta relativa a confirm.html en el mismo repo
+    const CONFIRM_BASE    = "confirm.html";
     const PHONE_REGEX     = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,14}$/;
     const FIXED_SLOTS     = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM","6:00 PM"];
-
     let selectedDate = null, selectedTime = null, isSubmitting = false;
 
-    /* ── REVIEWS ── */
     (function(){
       const track=document.getElementById("reviews-track"),dotsEl=document.getElementById("rev-dots"),prev=document.getElementById("rev-prev"),next=document.getElementById("rev-next");
       if(!track)return;
@@ -373,7 +311,6 @@
       window.addEventListener("resize",()=>go(cur));go(0);start();
     })();
 
-    /* ── DATE PILLS ── */
     function renderDatePills(){
       const c=document.getElementById("date-pills");c.innerHTML="";
       const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
@@ -389,17 +326,12 @@
       }
     }
 
-    // CAMBIO 1: ?date= → ?action=availability&date=
     async function loadTimes(date){
       const c=document.getElementById("time-grid");
       c.innerHTML='<div class="no-slots" style="border:none;padding:.5rem">Cargando...</div>';
       document.getElementById("time-field").style.display="block";
       let booked=[];
-      try{
-        const r=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+date);
-        const d=await r.json();
-        if(d.ok)booked=d.booked;
-      }catch(e){}
+      try{const r=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+date);const d=await r.json();if(d.ok)booked=d.booked;}catch(e){}
       c.innerHTML="";let avail=0;
       FIXED_SLOTS.forEach(slot=>{
         if(booked.includes(slot))return;avail++;
@@ -418,7 +350,6 @@
     function showFormError(msg){const el=document.getElementById("form-error");el.textContent="⚠  "+msg;el.style.display="block";el.scrollIntoView({behavior:"smooth",block:"nearest"})}
     function clearFormError(){const el=document.getElementById("form-error");el.style.display="none";el.textContent=""}
 
-    // CAMBIO 2: fetch con action=create, recibe id, genera confirm link
     async function handleSubmit(){
       if(isSubmitting)return;
       const btn=document.getElementById("submit-btn"),name=document.getElementById("inp-name").value.trim(),phone=document.getElementById("inp-phone").value.trim(),service=document.getElementById("inp-service").value,notes=document.getElementById("inp-notes").value.trim();
@@ -429,28 +360,19 @@
       if(!selectedDate)return showFormError("Selecciona un día.");
       if(!selectedTime)return showFormError("Selecciona un horario.");
       isSubmitting=true;btn.disabled=true;btn.textContent="Enviando...";
-
-      let bookingId = null;
+      let bookingId=null;
       try{
         const p=new URLSearchParams({action:"create",name,phone,service,date:selectedDate,time:selectedTime,notes});
-        const res=await fetch(APPS_SCRIPT_URL,{method:"POST",body:p});
+        const res=await fetch(APPS_SCRIPT_URL+"?"+p);
         const data=await res.json();
-        if(data.ok) bookingId=data.id;
-      }catch(e){}
-
-      // Mostrar success
+        if(data.ok)bookingId=data.id;
+      }catch(e){console.warn("[Jean] Submit error:",e);}
       document.getElementById("form-wrapper").style.display="none";
       document.getElementById("confirm-phone").textContent=phone;
       document.getElementById("success-box").style.display="block";
-
-      // Activar el link de confirmación si recibimos ID
       const confirmLinkEl=document.getElementById("confirm-link");
-      if(bookingId){
-        confirmLinkEl.href=CONFIRM_BASE+"?id="+bookingId;
-        confirmLinkEl.style.display="inline-block";
-      }else{
-        confirmLinkEl.style.display="none";
-      }
+      if(bookingId){confirmLinkEl.href=CONFIRM_BASE+"?id="+bookingId;confirmLinkEl.style.display="inline-block";}
+      else{confirmLinkEl.style.display="none";}
     }
 
     document.getElementById("inp-name").addEventListener("input",validateForm);
@@ -459,38 +381,22 @@
 
     const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");revObs.unobserve(e.target)}})},{threshold:0.1});
     document.querySelectorAll(".reveal").forEach(el=>revObs.observe(el));
-
     validateForm();
     renderDatePills();
 
-    /* ══ CHATBOT ══ */
-    const chatData = { name:"", phone:"", service:"", date:"", time:"", bookedTimes:[] };
-    let chatDismissed = false;
-    let chatMode = "idle";
-    let bookingStep = 0;
-
-    const BOOKING_FLOW = [
-      { bot:"¿Qué servicio quieres?", type:"options", key:"service", options:["Corte $25","Arreglo de Barba $15","Corte + Barba $35","Skin Fade $30","Lineup $15"] },
-      { bot:"¿Qué día te va mejor?", type:"date" },
-      { bot:"¿A qué hora?", type:"time_slots" },
-      { bot:"Por último, ¿tu número de WhatsApp?", type:"input", key:"phone" }
+    const chatData={name:"",phone:"",service:"",date:"",time:"",bookedTimes:[]};
+    let chatDismissed=false,chatMode="idle",bookingStep=0;
+    const BOOKING_FLOW=[
+      {bot:"¿Qué servicio quieres?",type:"options",key:"service",options:["Corte $25","Arreglo de Barba $15","Corte + Barba $35","Skin Fade $30","Lineup $15"]},
+      {bot:"¿Qué día te va mejor?",type:"date"},
+      {bot:"¿A qué hora?",type:"time_slots"},
+      {bot:"Por último, ¿tu número de WhatsApp?",type:"input",key:"phone"}
     ];
 
     function addBotMsg(text){const msgs=document.getElementById("chat-messages");const div=document.createElement("div");div.className="chat-msg bot";div.textContent=text;msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight}
     function addUserMsg(text){const msgs=document.getElementById("chat-messages");const div=document.createElement("div");div.className="chat-msg user";div.textContent=text;msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight}
-
-    function clearOpts(){
-      document.getElementById("chat-options").innerHTML="";
-      const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");
-      row.style.display="none";input.value="";input.onkeydown=null;send.onclick=null;
-    }
-
-    function showInput(placeholder,fn){
-      const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");
-      row.style.display="flex";input.placeholder=placeholder;input.value="";
-      setTimeout(()=>input.focus(),50);
-      input.onkeydown=(e)=>{if(e.key==="Enter")fn()};send.onclick=fn;
-    }
+    function clearOpts(){document.getElementById("chat-options").innerHTML="";const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");row.style.display="none";input.value="";input.onkeydown=null;send.onclick=null;}
+    function showInput(placeholder,fn){const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");row.style.display="flex";input.placeholder=placeholder;input.value="";setTimeout(()=>input.focus(),50);input.onkeydown=(e)=>{if(e.key==="Enter")fn()};send.onclick=fn;}
 
     function chatStart(){
       document.getElementById("chat-messages").innerHTML="";clearOpts();
@@ -504,13 +410,8 @@
             const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;
             btn.onclick=()=>{
               addUserMsg(label);clearOpts();
-              if(label==="Solo estoy mirando"){
-                chatMode="lead";
-                setTimeout(()=>{addBotMsg("¡Sin problema! ¿Me dejas tu WhatsApp para avisarte de promociones?");setTimeout(()=>showInput("Tu número de WhatsApp...",leadStep1),600)},600);
-              }else{
-                chatMode="booking";
-                setTimeout(()=>{addBotMsg("¡Perfecto! ¿Cuál es tu nombre?");setTimeout(()=>showInput("Tu nombre...",bookingName),600)},600);
-              }
+              if(label==="Solo estoy mirando"){chatMode="lead";setTimeout(()=>{addBotMsg("¡Sin problema! ¿Me dejas tu WhatsApp para avisarte de promociones?");setTimeout(()=>showInput("Tu número de WhatsApp...",leadStep1),600)},600);}
+              else{chatMode="booking";setTimeout(()=>{addBotMsg("¡Perfecto! ¿Cuál es tu nombre?");setTimeout(()=>showInput("Tu nombre...",bookingName),600)},600);}
             };
             opts.appendChild(btn);
           });
@@ -518,27 +419,17 @@
       },300);
     }
 
-    /* ── LEAD FLOW ── */
-    function leadStep1(){
-      const phone=document.getElementById("chat-input").value.trim();if(!phone)return;
-      addUserMsg(phone);chatData.phone=phone;clearOpts();
-      setTimeout(()=>{addBotMsg("¿Y cómo te llamas?");setTimeout(()=>showInput("Tu nombre...",leadStep2),600)},600);
-    }
+    function leadStep1(){const phone=document.getElementById("chat-input").value.trim();if(!phone)return;addUserMsg(phone);chatData.phone=phone;clearOpts();setTimeout(()=>{addBotMsg("¿Y cómo te llamas?");setTimeout(()=>showInput("Tu nombre...",leadStep2),600)},600);}
 
     async function leadStep2(){
       const name=document.getElementById("chat-input").value.trim();if(!name)return;
       addUserMsg(name);chatData.name=name;clearOpts();
       const p=new URLSearchParams({action:"create",name:chatData.name,phone:chatData.phone,service:"Lead",date:"N/A",time:"N/A",notes:"Solo mirando - follow up 2 semanas"});
-      fetch(APPS_SCRIPT_URL,{method:"POST",body:p}).catch(e=>console.warn("[Jean] Lead error:",e));
+      fetch(APPS_SCRIPT_URL+"?"+p).catch(e=>console.warn("[Jean] Lead error:",e));
       addBotMsg("¡Listo "+chatData.name+"! Jean te escribirá pronto con algo especial. 🔥");
     }
 
-    /* ── BOOKING FLOW ── */
-    function bookingName(){
-      const name=document.getElementById("chat-input").value.trim();if(!name)return;
-      addUserMsg(name);chatData.name=name;clearOpts();bookingStep=0;
-      setTimeout(()=>runStep(),500);
-    }
+    function bookingName(){const name=document.getElementById("chat-input").value.trim();if(!name)return;addUserMsg(name);chatData.name=name;clearOpts();bookingStep=0;setTimeout(()=>runStep(),500);}
 
     function runStep(){
       if(bookingStep>=BOOKING_FLOW.length){bookingFinish();return;}
@@ -548,11 +439,7 @@
         setTimeout(()=>{
           if(s.type==="options"){
             const opts=document.getElementById("chat-options");
-            s.options.forEach(opt=>{
-              const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=opt;
-              btn.onclick=()=>{addUserMsg(opt);chatData[s.key]=opt.split(" $")[0];clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};
-              opts.appendChild(btn);
-            });
+            s.options.forEach(opt=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=opt;btn.onclick=()=>{addUserMsg(opt);chatData[s.key]=opt.split(" $")[0];clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});
           }else if(s.type==="date"){
             const opts=document.getElementById("chat-options");
             const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
@@ -565,12 +452,7 @@
               const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;
               btn.onclick=async()=>{
                 addUserMsg(label);chatData.date=dateStr;clearOpts();
-                try{
-                  // CAMBIO 3 (chatbot): misma URL con action=availability
-                  const res=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+dateStr);
-                  const data=await res.json();
-                  if(data.ok)chatData.bookedTimes=data.booked;
-                }catch(e){chatData.bookedTimes=[];}
+                try{const res=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+dateStr);const data=await res.json();if(data.ok)chatData.bookedTimes=data.booked;}catch(e){chatData.bookedTimes=[];}
                 bookingStep++;setTimeout(()=>runStep(),500);
               };
               opts.appendChild(btn);count++;
@@ -579,66 +461,39 @@
             const opts=document.getElementById("chat-options");
             const available=FIXED_SLOTS.filter(sl=>!(chatData.bookedTimes||[]).includes(sl));
             if(available.length===0){addBotMsg("No hay horarios ese día. ¿Escogemos otro día?");bookingStep--;setTimeout(()=>runStep(),600);return;}
-            available.forEach(slot=>{
-              const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=slot;
-              btn.onclick=()=>{addUserMsg(slot);chatData.time=slot;clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};
-              opts.appendChild(btn);
-            });
+            available.forEach(slot=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=slot;btn.onclick=()=>{addUserMsg(slot);chatData.time=slot;clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});
           }else if(s.type==="input"){
-            showInput("Tu número de WhatsApp...",()=>{
-              const val=document.getElementById("chat-input").value.trim();if(!val)return;
-              addUserMsg(val);chatData[s.key]=val;clearOpts();bookingStep++;setTimeout(()=>runStep(),500);
-            });
+            showInput("Tu número de WhatsApp...",()=>{const val=document.getElementById("chat-input").value.trim();if(!val)return;addUserMsg(val);chatData[s.key]=val;clearOpts();bookingStep++;setTimeout(()=>runStep(),500);});
           }
         },400);
       },400);
     }
 
-    // CAMBIO 4 (chatbot finish): fetch con action=create, muestra link en chat
     async function bookingFinish(){
-      clearOpts();
-      addBotMsg("Reservando tu cita...");
+      clearOpts();addBotMsg("Reservando tu cita...");
       let bookingId=null;
       try{
         const p=new URLSearchParams({action:"create",name:chatData.name,phone:chatData.phone,service:chatData.service,date:chatData.date,time:chatData.time,notes:"Via chatbot"});
-        const res=await fetch(APPS_SCRIPT_URL,{method:"POST",body:p});
+        const res=await fetch(APPS_SCRIPT_URL+"?"+p);
         const data=await res.json();
         if(data.ok)bookingId=data.id;
       }catch(e){console.warn("[Jean] Cita error:",e);}
-
       setTimeout(()=>{
         addBotMsg("✅ ¡Listo "+chatData.name+"! Jean te confirmará pronto.");
         if(bookingId){
           setTimeout(()=>{
             const msgs=document.getElementById("chat-messages");
-            const a=document.createElement("a");
-            a.href=CONFIRM_BASE+"?id="+bookingId;
-            a.target="_blank";
-            a.className="chat-msg bot";
+            const a=document.createElement("a");a.href=CONFIRM_BASE+"?id="+bookingId;a.target="_blank";a.className="chat-msg bot";
             a.style.cssText="display:inline-block;color:var(--gold);text-decoration:underline;font-size:.85rem;margin-top:.2rem";
-            a.textContent="Ver detalles de tu cita →";
-            msgs.appendChild(a);
-            msgs.scrollTop=msgs.scrollHeight;
+            a.textContent="Ver detalles de tu cita →";msgs.appendChild(a);msgs.scrollTop=msgs.scrollHeight;
           },600);
         }
       },600);
     }
 
-    function toggleChat(){
-      const box=document.getElementById("chat-box");const isOpen=box.classList.contains("open");
-      document.getElementById("chat-notif").style.display="none";document.getElementById("chat-label").style.display="none";
-      if(isOpen){box.classList.remove("open")}else{box.classList.add("open");if(document.getElementById("chat-messages").children.length===0)chatStart();}
-    }
-
+    function toggleChat(){const box=document.getElementById("chat-box");const isOpen=box.classList.contains("open");document.getElementById("chat-notif").style.display="none";document.getElementById("chat-label").style.display="none";if(isOpen){box.classList.remove("open")}else{box.classList.add("open");if(document.getElementById("chat-messages").children.length===0)chatStart();}}
     function closeChat(){document.getElementById("chat-box").classList.remove("open");chatDismissed=true;}
-
-    window.addEventListener("scroll",()=>{
-      if(chatDismissed)return;
-      const w=document.getElementById("chat-widget");
-      const scrolled=window.scrollY/(document.body.scrollHeight-window.innerHeight);
-      if(scrolled>0.5)w.classList.add("visible");
-    });
-
+    window.addEventListener("scroll",()=>{if(chatDismissed)return;const w=document.getElementById("chat-widget");const scrolled=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(scrolled>0.5)w.classList.add("visible");});
   </script>
 </body>
 </html>
