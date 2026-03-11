@@ -216,7 +216,9 @@
     <p class="sec-sub reveal">Toca el mapa para preguntarle a Jean la dirección.</p>
     <div class="map-card reveal">
       <a href="https://wa.me/17875301101?text=Hola%20Jean%2C%20%C2%BFme%20puedes%20dar%20la%20direcci%C3%B3n%20de%20tu%20barbershop%3F" target="_blank" rel="noopener" style="display:block;text-decoration:none">
-        <div class="map-visual"><div class="map-pin"><div class="map-pulse"></div><div class="map-pin-dot"></div><div class="map-pin-shadow"></div></div></div>
+        <div class="map-visual">
+          <div class="map-pin"><div class="map-pulse"></div><div class="map-pin-dot"></div><div class="map-pin-shadow"></div></div>
+        </div>
       </a>
       <div class="map-footer">
         <div class="map-address"><strong>Jean The Barber</strong>Puerto Rico · Dirección por confirmar</div>
@@ -232,8 +234,14 @@
     <h2 class="sec-title reveal">Agenda tu Cita</h2>
     <p class="sec-sub reveal">Selecciona un horario disponible. Te confirmamos al instante.</p>
     <div id="form-wrapper" class="form-card reveal">
-      <div class="form-field"><label class="form-label" for="inp-name">Nombre Completo *</label><input id="inp-name" class="form-input" type="text" placeholder="Tu nombre" autocomplete="name"/></div>
-      <div class="form-field"><label class="form-label" for="inp-phone">Número de Teléfono *</label><input id="inp-phone" class="form-input" type="tel" placeholder="+1 (787) 000-0000" autocomplete="tel"/></div>
+      <div class="form-field">
+        <label class="form-label" for="inp-name">Nombre Completo *</label>
+        <input id="inp-name" class="form-input" type="text" placeholder="Tu nombre" autocomplete="name"/>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="inp-phone">Número de Teléfono *</label>
+        <input id="inp-phone" class="form-input" type="tel" placeholder="+1 (787) 000-0000" autocomplete="tel"/>
+      </div>
       <div class="form-field">
         <label class="form-label" for="inp-service">Servicio *</label>
         <select id="inp-service" class="form-select">
@@ -245,9 +253,18 @@
           <option value="Lineup">Lineup / Edge Up · 20 min · $15</option>
         </select>
       </div>
-      <div class="form-field"><label class="form-label">Selecciona el Día *</label><div id="date-pills" class="date-pills"></div></div>
-      <div class="form-field" id="time-field" style="display:none"><label class="form-label">Horarios Disponibles *</label><div id="time-grid" class="time-grid"></div></div>
-      <div class="form-field"><label class="form-label" for="inp-notes">Notas (opcional)</label><textarea id="inp-notes" class="form-textarea" rows="3" placeholder="Alguna preferencia o detalle..."></textarea></div>
+      <div class="form-field">
+        <label class="form-label">Selecciona el Día *</label>
+        <div id="date-pills" class="date-pills"></div>
+      </div>
+      <div class="form-field" id="time-field" style="display:none">
+        <label class="form-label">Horarios Disponibles *</label>
+        <div id="time-grid" class="time-grid"></div>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="inp-notes">Notas (opcional)</label>
+        <textarea id="inp-notes" class="form-textarea" rows="3" placeholder="Alguna preferencia o detalle..."></textarea>
+      </div>
       <div id="form-error" class="form-error" style="display:none"></div>
       <button id="submit-btn" class="submit-btn" onclick="handleSubmit()" disabled>Confirmar Solicitud de Cita →</button>
       <p class="form-disc">* Jean te confirmará por WhatsApp en breve.</p>
@@ -261,7 +278,9 @@
     </div>
   </section>
   <a id="wa-btn" href="https://wa.me/17875301101?text=Hola%20Jean%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20informaci%C3%B3n%20sobre%20una%20cita." target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg id="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.848 0-3.58-.504-5.072-1.383l-.36-.214-4.56 1.074 1.11-4.42-.23-.373A9.953 9.953 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.3 5.5c-.22 0-.576.082-.878.408-.303.326-1.156 1.13-1.156 2.754 0 1.625 1.183 3.195 1.347 3.416.165.22 2.31 3.682 5.682 5.016 2.814 1.11 3.385.89 3.996.834.61-.055 1.97-.805 2.248-1.582.278-.777.278-1.443.194-1.582-.083-.138-.303-.22-.636-.386-.332-.165-1.97-.972-2.274-1.082-.303-.11-.524-.165-.745.165-.22.33-.856 1.082-1.05 1.303-.192.22-.385.248-.717.083-.332-.166-1.402-.517-2.67-1.648-.987-.88-1.653-1.966-1.847-2.298-.193-.33-.02-.51.146-.674.149-.148.332-.385.498-.578.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.578-.083-.165-.737-1.796-1.022-2.455-.268-.63-.543-.544-.745-.554-.192-.009-.413-.011-.634-.011z"/></svg>
+    <svg id="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.848 0-3.58-.504-5.072-1.383l-.36-.214-4.56 1.074 1.11-4.42-.23-.373A9.953 9.953 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.3 5.5c-.22 0-.576.082-.878.408-.303.326-1.156 1.13-1.156 2.754 0 1.625 1.183 3.195 1.347 3.416.165.22 2.31 3.682 5.682 5.016 2.814 1.11 3.385.89 3.996.834.61-.055 1.97-.805 2.248-1.582.278-.777.278-1.443.194-1.582-.083-.138-.303-.22-.636-.386-.332-.165-1.97-.972-2.274-1.082-.303-.11-.524-.165-.745.165-.22.33-.856 1.082-1.05 1.303-.192.22-.385.248-.717.083-.332-.166-1.402-.517-2.67-1.648-.987-.88-1.653-1.966-1.847-2.298-.193-.33-.02-.51.146-.674.149-.148.332-.385.498-.578.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.578-.083-.165-.737-1.796-1.022-2.455-.268-.63-.543-.544-.745-.554-.192-.009-.413-.011-.634-.011z"/>
+    </svg>
   </a>
   <footer>
     <div class="footer-rule"></div>
@@ -271,7 +290,10 @@
   <div id="chat-widget">
     <div id="chat-box">
       <div class="chat-header">
-        <div><div class="chat-header-name">✂ Asistente de Jean</div><div class="chat-header-sub">Reserva en segundos</div></div>
+        <div>
+          <div class="chat-header-name">✂ Asistente de Jean</div>
+          <div class="chat-header-sub">Reserva en segundos</div>
+        </div>
         <button class="chat-close" onclick="closeChat()">✕</button>
       </div>
       <div class="chat-messages" id="chat-messages"></div>
@@ -284,7 +306,9 @@
     <div id="chat-bubble" onclick="toggleChat()">
       <div id="chat-notif">1</div>
       <div id="chat-label">¡Nuevo mensaje!</div>
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+      </svg>
     </div>
   </div>
   <script>
@@ -295,7 +319,6 @@
     const PHONE_REGEX     = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,14}$/;
     const FIXED_SLOTS     = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM","6:00 PM"];
     let selectedDate = null, selectedTime = null, isSubmitting = false;
-
     (function(){
       const track=document.getElementById("reviews-track"),dotsEl=document.getElementById("rev-dots"),prev=document.getElementById("rev-prev"),next=document.getElementById("rev-next");
       if(!track)return;
@@ -310,7 +333,6 @@
       let tx=0;track.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;stop()},{passive:true});track.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)go(dx<0?cur+1:cur-1);start()},{passive:true});
       window.addEventListener("resize",()=>go(cur));go(0);start();
     })();
-
     function renderDatePills(){
       const c=document.getElementById("date-pills");c.innerHTML="";
       const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
@@ -325,7 +347,6 @@
         c.appendChild(btn);count++;
       }
     }
-
     async function loadTimes(date){
       const c=document.getElementById("time-grid");
       c.innerHTML='<div class="no-slots" style="border:none;padding:.5rem">Cargando...</div>';
@@ -341,15 +362,12 @@
       });
       if(avail===0)c.innerHTML='<div class="no-slots">No hay horarios disponibles este día.</div>';
     }
-
     function validateForm(){
       const name=document.getElementById("inp-name").value.trim(),phone=document.getElementById("inp-phone").value.trim(),service=document.getElementById("inp-service").value,btn=document.getElementById("submit-btn");
       btn.disabled=!(name.length>=2&&PHONE_REGEX.test(phone)&&service!==""&&selectedDate!==null&&selectedTime!==null)||isSubmitting;
     }
-
     function showFormError(msg){const el=document.getElementById("form-error");el.textContent="⚠  "+msg;el.style.display="block";el.scrollIntoView({behavior:"smooth",block:"nearest"})}
     function clearFormError(){const el=document.getElementById("form-error");el.style.display="none";el.textContent=""}
-
     async function handleSubmit(){
       if(isSubmitting)return;
       const btn=document.getElementById("submit-btn"),name=document.getElementById("inp-name").value.trim(),phone=document.getElementById("inp-phone").value.trim(),service=document.getElementById("inp-service").value,notes=document.getElementById("inp-notes").value.trim();
@@ -366,7 +384,7 @@
         const res=await fetch(APPS_SCRIPT_URL+"?"+p);
         const data=await res.json();
         if(data.ok)bookingId=data.id;
-      }catch(e){console.warn("[Jean] Submit error:",e);}
+      }catch(e){}
       document.getElementById("form-wrapper").style.display="none";
       document.getElementById("confirm-phone").textContent=phone;
       document.getElementById("success-box").style.display="block";
@@ -374,16 +392,13 @@
       if(bookingId){confirmLinkEl.href=CONFIRM_BASE+"?id="+bookingId;confirmLinkEl.style.display="inline-block";}
       else{confirmLinkEl.style.display="none";}
     }
-
     document.getElementById("inp-name").addEventListener("input",validateForm);
     document.getElementById("inp-phone").addEventListener("input",validateForm);
     document.getElementById("inp-service").addEventListener("change",validateForm);
-
     const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");revObs.unobserve(e.target)}})},{threshold:0.1});
     document.querySelectorAll(".reveal").forEach(el=>revObs.observe(el));
     validateForm();
     renderDatePills();
-
     const chatData={name:"",phone:"",service:"",date:"",time:"",bookedTimes:[]};
     let chatDismissed=false,chatMode="idle",bookingStep=0;
     const BOOKING_FLOW=[
@@ -392,12 +407,10 @@
       {bot:"¿A qué hora?",type:"time_slots"},
       {bot:"Por último, ¿tu número de WhatsApp?",type:"input",key:"phone"}
     ];
-
     function addBotMsg(text){const msgs=document.getElementById("chat-messages");const div=document.createElement("div");div.className="chat-msg bot";div.textContent=text;msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight}
     function addUserMsg(text){const msgs=document.getElementById("chat-messages");const div=document.createElement("div");div.className="chat-msg user";div.textContent=text;msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight}
     function clearOpts(){document.getElementById("chat-options").innerHTML="";const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");row.style.display="none";input.value="";input.onkeydown=null;send.onclick=null;}
     function showInput(placeholder,fn){const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");row.style.display="flex";input.placeholder=placeholder;input.value="";setTimeout(()=>input.focus(),50);input.onkeydown=(e)=>{if(e.key==="Enter")fn()};send.onclick=fn;}
-
     function chatStart(){
       document.getElementById("chat-messages").innerHTML="";clearOpts();
       Object.assign(chatData,{name:"",phone:"",service:"",date:"",time:"",bookedTimes:[]});
@@ -418,9 +431,7 @@
         },700);
       },300);
     }
-
     function leadStep1(){const phone=document.getElementById("chat-input").value.trim();if(!phone)return;addUserMsg(phone);chatData.phone=phone;clearOpts();setTimeout(()=>{addBotMsg("¿Y cómo te llamas?");setTimeout(()=>showInput("Tu nombre...",leadStep2),600)},600);}
-
     async function leadStep2(){
       const name=document.getElementById("chat-input").value.trim();if(!name)return;
       addUserMsg(name);chatData.name=name;clearOpts();
@@ -428,9 +439,7 @@
       fetch(APPS_SCRIPT_URL+"?"+p).catch(e=>console.warn("[Jean] Lead error:",e));
       addBotMsg("¡Listo "+chatData.name+"! Jean te escribirá pronto con algo especial. 🔥");
     }
-
     function bookingName(){const name=document.getElementById("chat-input").value.trim();if(!name)return;addUserMsg(name);chatData.name=name;clearOpts();bookingStep=0;setTimeout(()=>runStep(),500);}
-
     function runStep(){
       if(bookingStep>=BOOKING_FLOW.length){bookingFinish();return;}
       const s=BOOKING_FLOW[bookingStep];clearOpts();
@@ -468,7 +477,6 @@
         },400);
       },400);
     }
-
     async function bookingFinish(){
       clearOpts();addBotMsg("Reservando tu cita...");
       let bookingId=null;
@@ -490,7 +498,6 @@
         }
       },600);
     }
-
     function toggleChat(){const box=document.getElementById("chat-box");const isOpen=box.classList.contains("open");document.getElementById("chat-notif").style.display="none";document.getElementById("chat-label").style.display="none";if(isOpen){box.classList.remove("open")}else{box.classList.add("open");if(document.getElementById("chat-messages").children.length===0)chatStart();}}
     function closeChat(){document.getElementById("chat-box").classList.remove("open");chatDismissed=true;}
     window.addEventListener("scroll",()=>{if(chatDismissed)return;const w=document.getElementById("chat-widget");const scrolled=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(scrolled>0.5)w.classList.add("visible");});
