@@ -21,53 +21,33 @@
     body{background:var(--black);color:var(--silver-light);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;min-height:100vh}
     ::selection{background:var(--gold);color:#000}
     ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--dark-1)}::-webkit-scrollbar-thumb{background:var(--silver-dim)}
-
-    /* HEADER */
-    header{
-      border-bottom:1px solid var(--dark-3);
-      padding:1.2rem 1.5rem;
-      display:flex;align-items:center;justify-content:space-between;
-      position:sticky;top:0;z-index:100;
-      background:rgba(8,8,8,.92);backdrop-filter:blur(12px);
-    }
+    header{border-bottom:1px solid var(--dark-3);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;background:rgba(8,8,8,.92);backdrop-filter:blur(12px)}
     .header-brand{display:flex;align-items:center;gap:.8rem}
     .header-icon{width:36px;height:36px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
     .header-name{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--white)}
     .header-sub{font-size:.75rem;letter-spacing:.15em;color:var(--silver-mid);text-transform:uppercase}
     .header-badge{background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.12em;padding:.3rem .7rem;text-transform:uppercase}
-
-    /* TABS */
     .tabs{display:flex;border-bottom:1px solid var(--dark-3);padding:0 1.5rem;gap:0}
     .tab{padding:1rem 1.5rem;font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--silver-mid);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font-ui)}
     .tab:hover{color:var(--silver-light)}
     .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
-
-    /* MAIN */
     main{max-width:700px;margin:0 auto;padding:2rem 1.5rem}
-
-    /* STATS BAR */
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--dark-3);border:1px solid var(--dark-3);margin-bottom:2rem}
     .stat{background:var(--dark-1);padding:1.2rem 1rem;text-align:center}
     .stat-num{font-family:var(--font-display);font-size:2rem;font-weight:600;color:var(--gold)}
     .stat-label{font-size:.65rem;letter-spacing:.18em;color:var(--silver-mid);text-transform:uppercase;margin-top:.2rem}
-
-    /* SECTION LABEL */
     .sec-label{font-size:.7rem;font-weight:700;letter-spacing:.35em;color:var(--silver-dim);text-transform:uppercase;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--dark-3)}
-
-    /* BOOKING CARD */
     .booking-card{background:var(--dark-1);border:1px solid var(--dark-3);margin-bottom:.8rem;transition:border-color .2s;animation:card-in .3s ease both}
     @keyframes card-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-    .booking-card.confirmed{border-left:3px solid var(--green)}
-    .booking-card.cancelled{border-left:3px solid var(--red);opacity:.5}
-    .booking-card.pending{border-left:3px solid var(--gold)}
+    .booking-card.confirmado{border-left:3px solid var(--green)}
+    .booking-card.cancelado{border-left:3px solid var(--red);opacity:.5}
+    .booking-card.pendiente{border-left:3px solid var(--gold)}
     .card-top{padding:1.2rem 1.2rem .8rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
-    .card-info{}
     .card-name{font-size:1.1rem;font-weight:700;letter-spacing:.06em;color:var(--white);margin-bottom:.3rem}
     .card-service{font-family:var(--font-display);font-style:italic;font-size:1.2rem;color:var(--gold);margin-bottom:.4rem}
     .card-meta{display:flex;flex-wrap:wrap;gap:.5rem .8rem}
     .card-meta-item{font-size:.8rem;color:var(--silver-mid);letter-spacing:.04em;display:flex;align-items:center;gap:.3rem}
     .card-meta-item svg{width:12px;height:12px;opacity:.6;flex-shrink:0}
-    .card-status{flex-shrink:0}
     .status-pill{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .7rem;border-radius:20px}
     .status-pill.pendiente{background:rgba(184,151,90,.12);color:var(--gold);border:1px solid rgba(184,151,90,.3)}
     .status-pill.confirmado{background:rgba(76,175,125,.12);color:var(--green);border:1px solid rgba(76,175,125,.3)}
@@ -82,28 +62,17 @@
     .btn-wa:hover{background:#25D366;color:#000}
     .btn-wa svg{width:13px;height:13px}
     .btn:disabled{opacity:.3;cursor:not-allowed}
-
-    /* EMPTY STATE */
     .empty{text-align:center;padding:4rem 1.5rem;border:1px solid var(--dark-3)}
     .empty-icon{font-family:var(--font-display);font-size:3rem;color:var(--gold);margin-bottom:1rem;display:block;font-style:italic;opacity:.4}
     .empty-text{color:var(--silver-mid);font-size:.9rem;letter-spacing:.06em}
-
-    /* LOADING */
     .loading{text-align:center;padding:3rem;color:var(--silver-dim);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
     .loading::after{content:'';animation:dots 1.2s steps(3,end) infinite}
     @keyframes dots{0%{content:''}33%{content:'.'}66%{content:'..'}100%{content:'...'}}
-
-    /* TOAST */
     #toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark-2);border:1px solid var(--dark-4);color:var(--silver-light);padding:.8rem 1.5rem;font-size:.85rem;letter-spacing:.06em;transition:transform .3s ease;z-index:999;white-space:nowrap;pointer-events:none}
     #toast.show{transform:translateX(-50%) translateY(0)}
     #toast.success{border-color:rgba(76,175,125,.4);color:var(--green)}
     #toast.error{border-color:rgba(224,85,85,.4);color:var(--red)}
-
-    @media(max-width:480px){
-      .tabs .tab{padding:.8rem .8rem;font-size:.7rem;letter-spacing:.1em}
-      .stats{grid-template-columns:repeat(3,1fr)}
-      .stat-num{font-size:1.5rem}
-    }
+    @media(max-width:480px){.tabs .tab{padding:.8rem .8rem;font-size:.7rem;letter-spacing:.1em}.stat-num{font-size:1.5rem}}
   </style>
 </head>
 <body>
@@ -130,10 +99,7 @@
     <div class="stat"><div class="stat-num" id="stat-confirmed">—</div><div class="stat-label">Confirmadas</div></div>
     <div class="stat"><div class="stat-num" id="stat-today">—</div><div class="stat-label">Hoy</div></div>
   </div>
-
-  <div id="list-container">
-    <div class="loading">Cargando citas</div>
-  </div>
+  <div id="list-container"><div class="loading">Cargando citas</div></div>
 </main>
 
 <div id="toast"></div>
@@ -141,14 +107,18 @@
 <script>
 "use strict";
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJmoNw-ilUhmtXvorwxNPVjoe9y_g7Kcwyos4HGB1Qae9Rt9vTzYeZV2A_w2rzU3IzlQ/exec";
+// ── CONFIG ────────────────────────────────────────────────────
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnyHeigoZkzPC34XGKrv9t0OtAw7SFlQll7gzjFZd4lZk-bZCLWd6CGNgE1RBqon8prg/exec";
 const BARBER_PHONE    = "17875301101";
-const BASE_URL        = window.location.origin + window.location.pathname.replace("panel.html","");
+const BASE_URL        = window.location.href.replace("panel.html","");
+// ─────────────────────────────────────────────────────────────
 
-let currentTab = "pending";
+const DIAS_ES  = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const MESES_ES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+let currentTab  = "pending";
 let allBookings = [];
 
-// ── INIT ──────────────────────────────────────────────────────
 async function init() {
   await loadAll();
   render();
@@ -158,198 +128,157 @@ async function loadAll() {
   try {
     const res  = await fetch(APPS_SCRIPT_URL + "?action=all");
     const data = await res.json();
-    if (data.ok) allBookings = data.bookings;
+    if (data.ok) allBookings = data.bookings || [];
     updateStats();
-  } catch(e) {
-    showToast("Error cargando citas", "error");
-  }
+  } catch(e) { showToast("Error cargando citas", "error"); }
+}
+
+function parseLocalDate(raw) {
+  if (!raw) return null;
+  const s = String(raw).substring(0,10).replace(/\//g,"-");
+  const parts = s.split("-").map(Number);
+  if (parts.length === 3) return new Date(parts[0], parts[1]-1, parts[2]);
+  return new Date(raw);
+}
+
+function formatDate(raw) {
+  const d = parseLocalDate(raw);
+  if (!d || isNaN(d)) return String(raw||"—");
+  const dia = DIAS_ES[d.getDay()], mes = MESES_ES[d.getMonth()];
+  return dia.charAt(0).toUpperCase()+dia.slice(1).substring(0,2)+", "+d.getDate()+" "+mes.substring(0,3);
 }
 
 function updateStats() {
-  const today = new Date().toISOString().split("T")[0];
-  const pending   = allBookings.filter(b => b.status === "Pendiente").length;
-  const confirmed = allBookings.filter(b => b.status === "Confirmado").length;
+  const todayStr = new Date().toISOString().split("T")[0];
+  const pending    = allBookings.filter(b => b.status==="Pendiente").length;
+  const confirmed  = allBookings.filter(b => b.status==="Confirmado").length;
   const todayCount = allBookings.filter(b => {
-    const d = typeof b.date === "string" ? b.date : new Date(b.date).toISOString().split("T")[0];
-    return d === today && b.status !== "Cancelado";
+    const d = parseLocalDate(b.date);
+    return d && d.toISOString().split("T")[0]===todayStr && b.status!=="Cancelado";
   }).length;
-
   document.getElementById("stat-pending").textContent   = pending;
   document.getElementById("stat-confirmed").textContent = confirmed;
   document.getElementById("stat-today").textContent     = todayCount;
-  document.getElementById("pending-badge").textContent  = pending + " pendiente" + (pending !== 1 ? "s" : "");
+  document.getElementById("pending-badge").textContent  = pending+" pendiente"+(pending!==1?"s":"");
 }
 
-// ── RENDER ────────────────────────────────────────────────────
 function render() {
   const container = document.getElementById("list-container");
   let list = [...allBookings];
-
-  if (currentTab === "pending") {
-    list = list.filter(b => b.status === "Pendiente");
-  }
-
-  // Ordenar: más recientes primero
-  list.sort((a, b) => {
-    const da = typeof a.date === "string" ? a.date : new Date(a.date).toISOString().split("T")[0];
-    const db = typeof b.date === "string" ? b.date : new Date(b.date).toISOString().split("T")[0];
-    return da.localeCompare(db);
+  if (currentTab === "pending") list = list.filter(b => b.status==="Pendiente");
+  list.sort((a,b) => {
+    const da = parseLocalDate(a.date), db = parseLocalDate(b.date);
+    return (da||0) - (db||0);
   });
-
   if (list.length === 0) {
-    container.innerHTML = `
-      <div class="empty">
-        <span class="empty-icon">✓</span>
-        <p class="empty-text">${currentTab === "pending" ? "No hay citas pendientes" : "No hay citas registradas"}</p>
-      </div>`;
+    container.innerHTML = `<div class="empty"><span class="empty-icon">✓</span><p class="empty-text">${currentTab==="pending"?"No hay citas pendientes":"No hay citas registradas"}</p></div>`;
     return;
   }
-
-  const label = currentTab === "pending" ? "Citas Pendientes" : "Todas las Citas";
-  container.innerHTML = `<div class="sec-label">${label} · ${list.length}</div>`;
+  container.innerHTML = `<div class="sec-label">${currentTab==="pending"?"Citas Pendientes":"Todas las Citas"} · ${list.length}</div>`;
   list.forEach(b => container.appendChild(buildCard(b)));
 }
 
 function buildCard(b) {
   const div = document.createElement("div");
-  const statusClass = (b.status || "Pendiente").toLowerCase();
+  const statusClass = (b.status||"Pendiente").toLowerCase();
   div.className = "booking-card " + statusClass;
-
-  const dateFormatted = formatDate(b.date);
   const isPending = b.status === "Pendiente";
-
   div.innerHTML = `
     <div class="card-top">
       <div class="card-info">
         <div class="card-name">${b.name}</div>
         <div class="card-service">${b.service}</div>
         <div class="card-meta">
-          <span class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            ${dateFormatted}
-          </span>
-          <span class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-            ${b.time}
-          </span>
-          <span class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            $${b.price}
-          </span>
-          <span class="card-meta-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            ${b.phone}
-          </span>
+          <span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${formatDate(b.date)}</span>
+          <span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>${b.time}</span>
+          <span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>$${b.price}</span>
+          <span class="card-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>${b.phone}</span>
         </div>
       </div>
-      <div class="card-status">
-        <span class="status-pill ${statusClass}">${b.status}</span>
-      </div>
+      <div><span class="status-pill ${statusClass}">${b.status}</span></div>
     </div>
     <div class="card-actions">
-      ${isPending ? `
-        <button class="btn btn-confirm" onclick="confirm('${b.id}', this)">✓ Confirmar</button>
-        <button class="btn btn-cancel"  onclick="cancel('${b.id}', this)">✕ Cancelar</button>
-      ` : ""}
-      ${b.status === "Confirmado" ? `
-        <button class="btn btn-wa" onclick="sendConfirmWA('${b.id}', '${b.phone}', '${b.name}')">
-          <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3z"/></svg>
-          Reenviar Confirmación
-        </button>
-      ` : ""}
+      ${isPending ? `<button class="btn btn-confirm" data-id="${b.id}">✓ Confirmar</button><button class="btn btn-cancel" data-id="${b.id}">✕ Cancelar</button>` : ""}
+      <button class="btn btn-wa" data-id="${b.id}" data-phone="${b.phone}" data-name="${b.name}">
+        <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3z"/></svg>
+        ${isPending ? "WhatsApp cliente" : "Reenviar confirmación"}
+      </button>
     </div>`;
+
+  // Event listeners
+  const confirmBtn = div.querySelector(".btn-confirm");
+  if (confirmBtn) confirmBtn.addEventListener("click", () => confirmBooking(b.id, confirmBtn, b));
+
+  const cancelBtn = div.querySelector(".btn-cancel");
+  if (cancelBtn) cancelBtn.addEventListener("click", () => cancelBooking(b.id, cancelBtn));
+
+  const waBtn = div.querySelector(".btn-wa");
+  if (waBtn) waBtn.addEventListener("click", () => sendConfirmWA(b.id, b.phone, b.name));
 
   return div;
 }
 
-// ── ACCIONES ──────────────────────────────────────────────────
-async function confirm(id, btn) {
+// ── CONFIRMAR (GET) ───────────────────────────────────────────
+async function confirmBooking(id, btn, booking) {
   btn.disabled = true;
   btn.textContent = "Confirmando...";
-
   try {
-    const p = new URLSearchParams({ action: "confirm", id });
-    const res  = await fetch(APPS_SCRIPT_URL, { method: "POST", body: p });
+    const res  = await fetch(APPS_SCRIPT_URL + "?action=confirm&id=" + id);
     const data = await res.json();
-
     if (data.ok) {
-      const booking = allBookings.find(b => b.id === id);
-      if (booking) {
-        booking.status = "Confirmado";
-        sendConfirmWA(id, booking.phone, booking.name);
-      }
+      const b = allBookings.find(b => b.id === id);
+      if (b) b.status = "Confirmado";
       updateStats();
       render();
+      sendConfirmWA(id, booking.phone, booking.name);
       showToast("✓ Cita confirmada · WhatsApp abierto", "success");
     } else {
-      showToast("Error: " + data.error, "error");
-      btn.disabled = false;
-      btn.textContent = "✓ Confirmar";
+      showToast("Error: " + (data.error||""), "error");
+      btn.disabled = false; btn.textContent = "✓ Confirmar";
     }
   } catch(e) {
     showToast("Error de conexión", "error");
-    btn.disabled = false;
-    btn.textContent = "✓ Confirmar";
+    btn.disabled = false; btn.textContent = "✓ Confirmar";
   }
 }
 
-async function cancel(id, btn) {
+// ── CANCELAR (GET) ────────────────────────────────────────────
+async function cancelBooking(id, btn) {
   if (!window.confirm("¿Cancelar esta cita?")) return;
   btn.disabled = true;
-
   try {
-    const p = new URLSearchParams({ action: "cancel", id });
-    const res  = await fetch(APPS_SCRIPT_URL, { method: "POST", body: p });
+    const res  = await fetch(APPS_SCRIPT_URL + "?action=cancel&id=" + id);
     const data = await res.json();
-
     if (data.ok) {
-      const booking = allBookings.find(b => b.id === id);
-      if (booking) booking.status = "Cancelado";
-      updateStats();
-      render();
+      const b = allBookings.find(b => b.id === id);
+      if (b) b.status = "Cancelado";
+      updateStats(); render();
       showToast("Cita cancelada", "error");
     }
-  } catch(e) {
-    showToast("Error de conexión", "error");
-  }
+  } catch(e) { showToast("Error de conexión", "error"); }
 }
 
+// ── ENVIAR CONFIRMACIÓN POR WHATSAPP AL CLIENTE ───────────────
 function sendConfirmWA(id, phone, name) {
   const confirmUrl = BASE_URL + "confirm.html?id=" + id;
-  const msg = "¡Hola " + name + "! ✂️ Tu cita con Jean The Barber está *confirmada*.\n\nVe los detalles aquí:\n" + confirmUrl;
-  window.open("https://wa.me/" + phone.replace(/\D/g,"") + "?text=" + encodeURIComponent(msg), "_blank");
+  const msg = "¡Hola "+name+"! ✂️ Tu cita con *Jean The Barber* está *confirmada*.\n\nVe todos los detalles aquí:\n"+confirmUrl+"\n\nSi tienes preguntas, escríbeme directo. 🙌";
+  window.open("https://wa.me/"+phone.replace(/\D/g,"")+"|?text="+encodeURIComponent(msg).replace("|",""), "_blank");
 }
 
-// ── TABS ──────────────────────────────────────────────────────
 function switchTab(tab) {
   currentTab = tab;
-  document.querySelectorAll(".tab").forEach((t, i) => {
-    t.classList.toggle("active", (i === 0 && tab === "pending") || (i === 1 && tab === "all"));
-  });
+  document.querySelectorAll(".tab").forEach((t,i) => t.classList.toggle("active",(i===0&&tab==="pending")||(i===1&&tab==="all")));
   render();
 }
 
-// ── HELPERS ───────────────────────────────────────────────────
-function formatDate(dateVal) {
-  if (!dateVal) return "—";
-  const d = typeof dateVal === "string" ? new Date(dateVal + "T12:00:00") : new Date(dateVal);
-  return d.toLocaleDateString("es-PR", { weekday:"short", month:"short", day:"numeric" });
-}
-
-function showToast(msg, type = "") {
+function showToast(msg, type="") {
   const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.className = "show " + type;
+  t.textContent = msg; t.className = "show "+type;
   setTimeout(() => t.className = "", 3000);
 }
 
 init();
-
-// Auto-refresh cada 60 segundos
-setInterval(async () => {
-  await loadAll();
-  render();
-}, 60000);
+setInterval(async () => { await loadAll(); render(); }, 60000);
 </script>
 </body>
 </html>
