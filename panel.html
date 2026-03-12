@@ -109,7 +109,22 @@
 
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBQrlBNVTmq2R-WSIcsSblQfmL36Et2Qj507xOW-kqLfeFni2MVJKrA1H1CmSi8fwdSQ/exec";
 const BARBER_PHONE    = "17875301101";
-const BASE_URL        = window.location.href.replace("panel.html","");
+const BASE_URL        = window.location.href.replace(/panel\.html.*$/, "");
+const VALID_TOKEN     = "jb8x92kqmn47tz3r";
+
+// ── VERIFICAR TOKEN ──────────────────────────────────────────
+(function checkToken() {
+  const params = new URLSearchParams(window.location.search);
+  const token  = params.get("token");
+  if (token !== VALID_TOKEN) {
+    document.body.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:1rem;font-family:'Rajdhani',sans-serif;">
+        <div style="font-size:2rem;color:#b8975a;font-family:'Cormorant Garamond',serif;font-style:italic;">✂</div>
+        <div style="color:#6e6e6e;font-size:.9rem;letter-spacing:.1em;">Acceso no autorizado</div>
+      </div>`;
+    throw new Error("Token inválido");
+  }
+})();
 
 const DIAS_ES  = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 const MESES_ES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -186,6 +201,7 @@ function buildCard(b) {
   const div = document.createElement("div");
   const statusClass = (b.status||"Pendiente").toLowerCase();
   div.className = "booking-card " + statusClass;
+  div.id = "card-" + b.id;
   const isPending   = b.status === "Pendiente";
   const confirmUrl  = BASE_URL + "confirm.html?id=" + b.id;
   const waMsg       = "¡Hola "+b.name+"! ✂️ Tu cita con *Jean The Barber* está *confirmada*.\n\nVe los detalles aquí:\n"+confirmUrl+"\n\nCualquier pregunta escríbeme. 🙌";
@@ -302,7 +318,17 @@ function showToast(msg, type="") {
   setTimeout(() => t.className = "", 3000);
 }
 
-init();
+init().then(() => {
+  // Si viene con ?id=JB-XXX desde el Calendar, resaltar esa cita
+  const targetId = new URLSearchParams(window.location.search).get("id");
+  if (targetId) {
+    const card = document.getElementById("card-" + targetId);
+    if (card) {
+      card.style.border = "1px solid var(--gold)";
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+});
 setInterval(async () => { await loadAll(); render(); }, 60000);
 </script>
 </body>
