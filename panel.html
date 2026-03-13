@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow"/>
-  <title>Panel · Jean The Barber</title>
+  <title>Panel \u00b7 Jean The Barber</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
@@ -79,13 +79,13 @@
 
 <header>
   <div class="header-brand">
-    <div class="header-icon">✂</div>
+    <div class="header-icon">\u2702</div>
     <div>
       <div class="header-name">Jean The Barber</div>
       <div class="header-sub">Panel de Citas</div>
     </div>
   </div>
-  <div class="header-badge" id="pending-badge">— pendientes</div>
+  <div class="header-badge" id="pending-badge">\u2014 pendientes</div>
 </header>
 
 <div class="tabs">
@@ -95,9 +95,9 @@
 
 <main>
   <div class="stats">
-    <div class="stat"><div class="stat-num" id="stat-pending">—</div><div class="stat-label">Pendientes</div></div>
-    <div class="stat"><div class="stat-num" id="stat-confirmed">—</div><div class="stat-label">Confirmadas</div></div>
-    <div class="stat"><div class="stat-num" id="stat-today">—</div><div class="stat-label">Hoy</div></div>
+    <div class="stat"><div class="stat-num" id="stat-pending">\u2014</div><div class="stat-label">Pendientes</div></div>
+    <div class="stat"><div class="stat-num" id="stat-confirmed">\u2014</div><div class="stat-label">Confirmadas</div></div>
+    <div class="stat"><div class="stat-num" id="stat-today">\u2014</div><div class="stat-label">Hoy</div></div>
   </div>
   <div id="list-container"><div class="loading">Cargando citas</div></div>
 </main>
@@ -107,26 +107,27 @@
 <script>
 "use strict";
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzTCt71TakFw-s5stiqCNWxzy2b9F1ECusL2I4cTlrjQln3YcnQFpA0iqeLAc4FwooUXg/exec";
+// \u2705 URL CORRECTA del Apps Script
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDf8z-B4v2R0RZAxDjx-B44eks0gThbwI28CipHsNnOm8sSZu5Ye9AjTHWajIoO8FPBw/exec";
 const BARBER_PHONE    = "17875301101";
 const BASE_URL        = window.location.href.replace(/panel\.html.*$/, "");
 const VALID_TOKEN     = "jb8x92kqmn47tz3r";
 
-// ── VERIFICAR TOKEN ──────────────────────────────────────────
+// \u2500\u2500 VERIFICAR TOKEN \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 (function checkToken() {
   const params = new URLSearchParams(window.location.search);
   const token  = params.get("token");
   if (token !== VALID_TOKEN) {
     document.body.innerHTML = `
       <div style="display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:1rem;font-family:'Rajdhani',sans-serif;">
-        <div style="font-size:2rem;color:#b8975a;font-family:'Cormorant Garamond',serif;font-style:italic;">✂</div>
+        <div style="font-size:2rem;color:#b8975a;font-family:'Cormorant Garamond',serif;font-style:italic;">\u2702</div>
         <div style="color:#6e6e6e;font-size:.9rem;letter-spacing:.1em;">Acceso no autorizado</div>
       </div>`;
-    throw new Error("Token inválido");
+    throw new Error("Token inv\u00e1lido");
   }
 })();
 
-const DIAS_ES  = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const DIAS_ES  = ["domingo","lunes","martes","mi\u00e9rcoles","jueves","viernes","s\u00e1bado"];
 const MESES_ES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
 let currentTab  = "pending";
@@ -156,7 +157,7 @@ function parseLocalDate(raw) {
 
 function formatDate(raw) {
   const d = parseLocalDate(raw);
-  if (!d || isNaN(d)) return String(raw||"—");
+  if (!d || isNaN(d)) return String(raw||"\u2014");
   const dia = DIAS_ES[d.getDay()], mes = MESES_ES[d.getMonth()];
   return dia.charAt(0).toUpperCase()+dia.slice(1,3)+", "+d.getDate()+" "+mes.substring(0,3);
 }
@@ -190,10 +191,10 @@ function render() {
     return da - db;
   });
   if (list.length === 0) {
-    container.innerHTML = `<div class="empty"><span class="empty-icon">✓</span><p class="empty-text">${currentTab==="pending"?"No hay citas pendientes":"No hay citas registradas"}</p></div>`;
+    container.innerHTML = `<div class="empty"><span class="empty-icon">\u2713</span><p class="empty-text">${currentTab==="pending"?"No hay citas pendientes":"No hay citas registradas"}</p></div>`;
     return;
   }
-  container.innerHTML = `<div class="sec-label">${currentTab==="pending"?"Citas Pendientes":"Todas las Citas"} · ${list.length}</div>`;
+  container.innerHTML = `<div class="sec-label">${currentTab==="pending"?"Citas Pendientes":"Todas las Citas"} \u00b7 ${list.length}</div>`;
   list.forEach(b => container.appendChild(buildCard(b)));
 }
 
@@ -204,7 +205,7 @@ function buildCard(b) {
   div.id = "card-" + b.id;
   const isPending   = b.status === "Pendiente";
   const confirmUrl  = BASE_URL + "confirm.html?id=" + b.id;
-  const waMsg       = "¡Hola "+b.name+"! ✂️ Tu cita con *Jean The Barber* está *confirmada*.\n\nVe los detalles aquí:\n"+confirmUrl+"\n\nCualquier pregunta escríbeme. 🙌";
+  const waMsg       = "\u00a1Hola "+b.name+"! \u2702\ufe0f Tu cita con *Jean The Barber* est\u00e1 *confirmada*.\n\nVe los detalles aqu\u00ed:\n"+confirmUrl+"\n\nCualquier pregunta escr\u00edbeme. \ud83d\ude4c";
   const waLink      = "https://wa.me/"+b.phone.replace(/\D/g,"")+"?text="+encodeURIComponent(waMsg);
 
   div.innerHTML = `
@@ -235,101 +236,17 @@ function buildCard(b) {
     </div>
     <div class="card-actions">
       ${isPending ? `
-        <button class="btn btn-confirm" id="confirm-${b.id}">✓ Confirmar</button>
-        <button class="btn btn-cancel-booking" id="cancel-${b.id}">✕ Cancelar</button>
+        <button class="btn btn-confirm" id="confirm-${b.id}">\u2713 Confirmar</button>
+        <button class="btn btn-cancel-booking" id="cancel-${b.id}">\u2715 Cancelar</button>
       ` : ""}
       <a class="btn btn-wa" href="${waLink}" target="_blank" rel="noopener">
         <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3z"/></svg>
-        ${isPending ? "WhatsApp cliente" : "Reenviar confirmación"}
+        ${isPending ? "WhatsApp cliente" : "Reenviar confirmaci\u00f3n"}
       </a>
     </div>`;
 
-  // Confirmar — primero abre WA (desde el click), luego hace fetch
   const confirmBtn = div.querySelector("#confirm-"+b.id);
   if (confirmBtn) {
     confirmBtn.addEventListener("click", () => {
-      // Abrir WhatsApp INMEDIATAMENTE desde el click (antes del async)
       window.open(waLink, "_blank");
-      // Luego confirmar en la sheet
-      confirmBooking(b.id, confirmBtn, b);
-    });
-  }
-
-  const cancelBtn = div.querySelector("#cancel-"+b.id);
-  if (cancelBtn) {
-    cancelBtn.addEventListener("click", () => cancelBooking(b.id, cancelBtn));
-  }
-
-  return div;
-}
-
-async function confirmBooking(id, btn, booking) {
-  btn.disabled = true;
-  btn.textContent = "Confirmando...";
-  try {
-    const res  = await fetch(APPS_SCRIPT_URL + "?action=confirm&id=" + id);
-    const data = await res.json();
-    if (data.ok) {
-      const b = allBookings.find(b => b.id === id);
-      if (b) b.status = "Confirmado";
-      updateStats();
-      render();
-      showToast("✓ Cita confirmada · WA enviado", "success");
-    } else {
-      showToast("Error: " + (data.error||""), "error");
-      btn.disabled = false;
-      btn.textContent = "✓ Confirmar";
-    }
-  } catch(e) {
-    showToast("Error de conexión", "error");
-    btn.disabled = false;
-    btn.textContent = "✓ Confirmar";
-  }
-}
-
-async function cancelBooking(id, btn) {
-  if (!window.confirm("¿Cancelar esta cita?")) return;
-  btn.disabled = true;
-  try {
-    const res  = await fetch(APPS_SCRIPT_URL + "?action=cancel&id=" + id);
-    const data = await res.json();
-    if (data.ok) {
-      const b = allBookings.find(b => b.id === id);
-      if (b) b.status = "Cancelado";
-      updateStats();
-      render();
-      showToast("Cita cancelada", "error");
-    }
-  } catch(e) { showToast("Error de conexión", "error"); }
-}
-
-function switchTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll(".tab").forEach((t,i) => {
-    t.classList.toggle("active",(i===0&&tab==="pending")||(i===1&&tab==="all"));
-  });
-  render();
-}
-
-function showToast(msg, type="") {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.className = "show "+type;
-  setTimeout(() => t.className = "", 3000);
-}
-
-init().then(() => {
-  // Si viene con ?id=JB-XXX desde el Calendar, resaltar esa cita
-  const targetId = new URLSearchParams(window.location.search).get("id");
-  if (targetId) {
-    const card = document.getElementById("card-" + targetId);
-    if (card) {
-      card.style.border = "1px solid var(--gold)";
-      card.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  }
-});
-setInterval(async () => { await loadAll(); render(); }, 60000);
-</script>
-</body>
-</html>
+      confirmBooking(b.id, confirmBtn, b);  
