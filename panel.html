@@ -1,10 +1,10 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow"/>
-  <title>Panel \u00b7 Jean The Barber</title>
+  <title>Panel · Jean The Barber</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
@@ -28,7 +28,7 @@
     .header-sub{font-size:.75rem;letter-spacing:.15em;color:var(--silver-mid);text-transform:uppercase}
     .header-badge{background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.12em;padding:.3rem .7rem;text-transform:uppercase}
     .tabs{display:flex;border-bottom:1px solid var(--dark-3);padding:0 1.5rem}
-    .tab{padding:1rem 1.5rem;font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--silver-mid);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font-ui)}
+    .tab{padding:1rem 1.2rem;font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--silver-mid);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font-ui)}
     .tab:hover{color:var(--silver-light)}
     .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
     main{max-width:700px;margin:0 auto;padding:2rem 1.5rem}
@@ -48,7 +48,7 @@
     .card-meta{display:flex;flex-wrap:wrap;gap:.5rem .8rem}
     .card-meta-item{font-size:.8rem;color:var(--silver-mid);letter-spacing:.04em;display:flex;align-items:center;gap:.3rem}
     .card-meta-item svg{width:12px;height:12px;opacity:.6;flex-shrink:0}
-    .status-pill{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .7rem;border-radius:20px}
+    .status-pill{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .7rem;border-radius:20px;white-space:nowrap}
     .status-pill.pendiente{background:rgba(184,151,90,.12);color:var(--gold);border:1px solid rgba(184,151,90,.3)}
     .status-pill.confirmado{background:rgba(76,175,125,.12);color:var(--green);border:1px solid rgba(76,175,125,.3)}
     .status-pill.cancelado{background:rgba(224,85,85,.12);color:var(--red);border:1px solid rgba(224,85,85,.3)}
@@ -68,38 +68,58 @@
     .loading{text-align:center;padding:3rem;color:var(--silver-dim);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
     .loading::after{content:'';animation:dots 1.2s steps(3,end) infinite}
     @keyframes dots{0%{content:''}33%{content:'.'}66%{content:'..'}100%{content:'...'}}
+    /* Calendar tab */
+    .calendar-wrap{background:var(--dark-1);border:1px solid var(--dark-3);padding:.5rem;border-radius:2px}
+    .calendar-wrap iframe{width:100%;height:600px;border:none;filter:invert(1) hue-rotate(180deg) saturate(.8) brightness(.9)}
     #toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark-2);border:1px solid var(--dark-4);color:var(--silver-light);padding:.8rem 1.5rem;font-size:.85rem;letter-spacing:.06em;transition:transform .3s ease;z-index:999;white-space:nowrap;pointer-events:none}
     #toast.show{transform:translateX(-50%) translateY(0)}
     #toast.success{border-color:rgba(76,175,125,.4);color:var(--green)}
     #toast.error{border-color:rgba(224,85,85,.4);color:var(--red)}
-    @media(max-width:480px){.tabs .tab{padding:.8rem .8rem;font-size:.7rem;letter-spacing:.1em}.stat-num{font-size:1.5rem}}
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+    @media(max-width:480px){.tabs .tab{padding:.8rem .6rem;font-size:.7rem;letter-spacing:.1em}.stat-num{font-size:1.5rem}.calendar-wrap iframe{height:480px}}
   </style>
 </head>
 <body>
 
 <header>
   <div class="header-brand">
-    <div class="header-icon">\u2702</div>
+    <div class="header-icon">✂</div>
     <div>
       <div class="header-name">Jean The Barber</div>
       <div class="header-sub">Panel de Citas</div>
     </div>
   </div>
-  <div class="header-badge" id="pending-badge">\u2014 pendientes</div>
+  <div class="header-badge" id="pending-badge">— pendientes</div>
 </header>
 
 <div class="tabs">
   <button class="tab active" onclick="switchTab('pending')">Pendientes</button>
   <button class="tab" onclick="switchTab('all')">Todas</button>
+  <button class="tab" onclick="switchTab('calendar')">Calendario</button>
 </div>
 
 <main>
   <div class="stats">
-    <div class="stat"><div class="stat-num" id="stat-pending">\u2014</div><div class="stat-label">Pendientes</div></div>
-    <div class="stat"><div class="stat-num" id="stat-confirmed">\u2014</div><div class="stat-label">Confirmadas</div></div>
-    <div class="stat"><div class="stat-num" id="stat-today">\u2014</div><div class="stat-label">Hoy</div></div>
+    <div class="stat"><div class="stat-num" id="stat-pending">—</div><div class="stat-label">Pendientes</div></div>
+    <div class="stat"><div class="stat-num" id="stat-confirmed">—</div><div class="stat-label">Confirmadas</div></div>
+    <div class="stat"><div class="stat-num" id="stat-today">—</div><div class="stat-label">Hoy</div></div>
   </div>
-  <div id="list-container"><div class="loading">Cargando citas</div></div>
+
+  <div id="tab-pending" class="tab-content active">
+    <div id="list-pending"><div class="loading">Cargando citas</div></div>
+  </div>
+
+  <div id="tab-all" class="tab-content">
+    <div id="list-all"></div>
+  </div>
+
+  <div id="tab-calendar" class="tab-content">
+    <div class="sec-label">Calendario · Jean The Barber</div>
+    <div class="calendar-wrap">
+      <iframe src="https://calendar.google.com/calendar/embed?src=willquisnos%40gmail.com&ctz=America%2FPuerto_Rico" style="border:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </div>
 </main>
 
 <div id="toast"></div>
@@ -107,27 +127,26 @@
 <script>
 "use strict";
 
-// \u2705 URL CORRECTA del Apps Script
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDf8z-B4v2R0RZAxDjx-B44eks0gThbwI28CipHsNnOm8sSZu5Ye9AjTHWajIoO8FPBw/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzTCt71TakFw-s5stiqCNWxzy2b9F1ECusL2I4cTlrjQln3YcnQFpA0iqeLAc4FwooUXg/exec";
 const BARBER_PHONE    = "17875301101";
 const BASE_URL        = window.location.href.replace(/panel\.html.*$/, "");
 const VALID_TOKEN     = "jb8x92kqmn47tz3r";
 
-// \u2500\u2500 VERIFICAR TOKEN \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+// ── VERIFICAR TOKEN ──────────────────────────────────────────
 (function checkToken() {
   const params = new URLSearchParams(window.location.search);
   const token  = params.get("token");
   if (token !== VALID_TOKEN) {
     document.body.innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:1rem;font-family:'Rajdhani',sans-serif;">
-        <div style="font-size:2rem;color:#b8975a;font-family:'Cormorant Garamond',serif;font-style:italic;">\u2702</div>
-        <div style="color:#6e6e6e;font-size:.9rem;letter-spacing:.1em;">Acceso no autorizado</div>
+      <div style="display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:1rem;">
+        <div style="font-size:2rem;color:#b8975a;font-family:'Cormorant Garamond',serif;font-style:italic;">✂</div>
+        <div style="color:#6e6e6e;font-size:.9rem;letter-spacing:.1em;font-family:'Rajdhani',sans-serif;">Acceso no autorizado</div>
       </div>`;
-    throw new Error("Token inv\u00e1lido");
+    throw new Error("Token inválido");
   }
 })();
 
-const DIAS_ES  = ["domingo","lunes","martes","mi\u00e9rcoles","jueves","viernes","s\u00e1bado"];
+const DIAS_ES  = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 const MESES_ES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
 let currentTab  = "pending";
@@ -136,6 +155,18 @@ let allBookings = [];
 async function init() {
   await loadAll();
   render();
+  // Highlight cita específica si viene con ?id=
+  const targetId = new URLSearchParams(window.location.search).get("id");
+  if (targetId) {
+    setTimeout(() => {
+      const card = document.getElementById("card-" + targetId);
+      if (card) {
+        card.style.borderColor = "var(--gold)";
+        card.style.boxShadow   = "0 0 0 1px var(--gold)";
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 300);
+  }
 }
 
 async function loadAll() {
@@ -144,46 +175,53 @@ async function loadAll() {
     const data = await res.json();
     if (data.ok) allBookings = data.bookings || [];
     updateStats();
-  } catch(e) { showToast("Error cargando citas", "error"); }
+  } catch(e) {
+    showToast("Error cargando citas", "error");
+  }
 }
 
 function parseLocalDate(raw) {
   if (!raw) return null;
-  const s = String(raw).substring(0,10).replace(/\//g,"-");
+  const s = String(raw).substring(0, 10).replace(/\//g, "-");
   const parts = s.split("-").map(Number);
-  if (parts.length === 3 && parts[0] > 1970) return new Date(parts[0], parts[1]-1, parts[2]);
+  if (parts.length === 3 && parts[0] > 1970) return new Date(parts[0], parts[1] - 1, parts[2]);
   return null;
 }
 
 function formatDate(raw) {
   const d = parseLocalDate(raw);
-  if (!d || isNaN(d)) return String(raw||"\u2014");
-  const dia = DIAS_ES[d.getDay()], mes = MESES_ES[d.getMonth()];
-  return dia.charAt(0).toUpperCase()+dia.slice(1,3)+", "+d.getDate()+" "+mes.substring(0,3);
+  if (!d || isNaN(d)) return String(raw || "—");
+  const dia = DIAS_ES[d.getDay()];
+  const mes = MESES_ES[d.getMonth()];
+  return dia.charAt(0).toUpperCase() + dia.slice(1, 3) + ", " + d.getDate() + " " + mes.substring(0, 3);
 }
 
 function updateStats() {
-  const today = new Date();
-  const todayStr = today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
-  const pending    = allBookings.filter(b => b.status==="Pendiente").length;
-  const confirmed  = allBookings.filter(b => b.status==="Confirmado").length;
+  const today    = new Date();
+  const todayStr = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
+  const pending   = allBookings.filter(b => b.status === "Pendiente").length;
+  const confirmed = allBookings.filter(b => b.status === "Confirmado").length;
   const todayCount = allBookings.filter(b => {
     const d = parseLocalDate(b.date);
     if (!d) return false;
-    const ds = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    const ds = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
     return ds === todayStr && b.status !== "Cancelado";
   }).length;
   document.getElementById("stat-pending").textContent   = pending;
   document.getElementById("stat-confirmed").textContent = confirmed;
   document.getElementById("stat-today").textContent     = todayCount;
-  document.getElementById("pending-badge").textContent  = pending+" pendiente"+(pending!==1?"s":"");
+  document.getElementById("pending-badge").textContent  = pending + " pendiente" + (pending !== 1 ? "s" : "");
 }
 
 function render() {
-  const container = document.getElementById("list-container");
+  renderList("pending", document.getElementById("list-pending"));
+  renderList("all",     document.getElementById("list-all"));
+}
+
+function renderList(type, container) {
   let list = [...allBookings];
-  if (currentTab === "pending") list = list.filter(b => b.status==="Pendiente");
-  list.sort((a,b) => {
+  if (type === "pending") list = list.filter(b => b.status === "Pendiente");
+  list.sort((a, b) => {
     const da = parseLocalDate(a.date), db = parseLocalDate(b.date);
     if (!da && !db) return 0;
     if (!da) return 1;
@@ -191,22 +229,24 @@ function render() {
     return da - db;
   });
   if (list.length === 0) {
-    container.innerHTML = `<div class="empty"><span class="empty-icon">\u2713</span><p class="empty-text">${currentTab==="pending"?"No hay citas pendientes":"No hay citas registradas"}</p></div>`;
+    container.innerHTML = `<div class="empty"><span class="empty-icon">✓</span><p class="empty-text">${type === "pending" ? "No hay citas pendientes" : "No hay citas registradas"}</p></div>`;
     return;
   }
-  container.innerHTML = `<div class="sec-label">${currentTab==="pending"?"Citas Pendientes":"Todas las Citas"} \u00b7 ${list.length}</div>`;
+  container.innerHTML = `<div class="sec-label">${type === "pending" ? "Citas Pendientes" : "Todas las Citas"} · ${list.length}</div>`;
   list.forEach(b => container.appendChild(buildCard(b)));
 }
 
 function buildCard(b) {
-  const div = document.createElement("div");
-  const statusClass = (b.status||"Pendiente").toLowerCase();
-  div.className = "booking-card " + statusClass;
-  div.id = "card-" + b.id;
-  const isPending   = b.status === "Pendiente";
-  const confirmUrl  = BASE_URL + "confirm.html?id=" + b.id;
-  const waMsg       = "\u00a1Hola "+b.name+"! \u2702\ufe0f Tu cita con *Jean The Barber* est\u00e1 *confirmada*.\n\nVe los detalles aqu\u00ed:\n"+confirmUrl+"\n\nCualquier pregunta escr\u00edbeme. \ud83d\ude4c";
-  const waLink      = "https://wa.me/"+b.phone.replace(/\D/g,"")+"?text="+encodeURIComponent(waMsg);
+  const div         = document.createElement("div");
+  const statusClass = (b.status || "Pendiente").toLowerCase();
+  div.className     = "booking-card " + statusClass;
+  div.id            = "card-" + b.id;
+
+  const isPending  = b.status === "Pendiente";
+  const phoneStr   = String(b.phone).replace(/\D/g, "");
+  const confirmUrl = BASE_URL + "confirm.html?id=" + b.id;
+  const waMsg      = "¡Hola " + b.name + "! ✂️ Tu cita con *Jean The Barber* está *confirmada*.\n\nVe los detalles aquí:\n" + confirmUrl + "\n\nCualquier pregunta escríbeme. 🙌";
+  const waLink     = "https://wa.me/" + phoneStr + "?text=" + encodeURIComponent(waMsg);
 
   div.innerHTML = `
     <div class="card-top">
@@ -228,7 +268,7 @@ function buildCard(b) {
           </span>
           <span class="card-meta-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            ${b.phone}
+            ${String(b.phone)}
           </span>
         </div>
       </div>
@@ -236,17 +276,92 @@ function buildCard(b) {
     </div>
     <div class="card-actions">
       ${isPending ? `
-        <button class="btn btn-confirm" id="confirm-${b.id}">\u2713 Confirmar</button>
-        <button class="btn btn-cancel-booking" id="cancel-${b.id}">\u2715 Cancelar</button>
+        <button class="btn btn-confirm" id="confirm-${b.id}">✓ Confirmar</button>
+        <button class="btn btn-cancel-booking" id="cancel-${b.id}">✕ Cancelar</button>
       ` : ""}
       <a class="btn btn-wa" href="${waLink}" target="_blank" rel="noopener">
         <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3z"/></svg>
-        ${isPending ? "WhatsApp cliente" : "Reenviar confirmaci\u00f3n"}
+        ${isPending ? "WhatsApp cliente" : "Reenviar confirmación"}
       </a>
     </div>`;
 
-  const confirmBtn = div.querySelector("#confirm-"+b.id);
+  const confirmBtn = div.querySelector("#confirm-" + b.id);
   if (confirmBtn) {
     confirmBtn.addEventListener("click", () => {
       window.open(waLink, "_blank");
-      confirmBooking(b.id, confirmBtn, b);  
+      confirmBooking(b.id, confirmBtn);
+    });
+  }
+
+  const cancelBtn = div.querySelector("#cancel-" + b.id);
+  if (cancelBtn) {
+    cancelBtn.addEventListener("click", () => cancelBooking(b.id, cancelBtn));
+  }
+
+  return div;
+}
+
+async function confirmBooking(id, btn) {
+  btn.disabled    = true;
+  btn.textContent = "Confirmando...";
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL + "?action=confirm&id=" + id);
+    const data = await res.json();
+    if (data.ok) {
+      const b = allBookings.find(b => b.id === id);
+      if (b) b.status = "Confirmado";
+      updateStats();
+      render();
+      showToast("✓ Cita confirmada · WA enviado", "success");
+    } else {
+      showToast("Error: " + (data.error || ""), "error");
+      btn.disabled    = false;
+      btn.textContent = "✓ Confirmar";
+    }
+  } catch(e) {
+    showToast("Error de conexión", "error");
+    btn.disabled    = false;
+    btn.textContent = "✓ Confirmar";
+  }
+}
+
+async function cancelBooking(id, btn) {
+  if (!window.confirm("¿Cancelar esta cita?")) return;
+  btn.disabled = true;
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL + "?action=cancel&id=" + id);
+    const data = await res.json();
+    if (data.ok) {
+      const b = allBookings.find(b => b.id === id);
+      if (b) b.status = "Cancelado";
+      updateStats();
+      render();
+      showToast("Cita cancelada", "error");
+    }
+  } catch(e) {
+    showToast("Error de conexión", "error");
+  }
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll(".tab").forEach((t, i) => {
+    const tabs = ["pending", "all", "calendar"];
+    t.classList.toggle("active", tabs[i] === tab);
+  });
+  document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+  document.getElementById("tab-" + tab).classList.add("active");
+}
+
+function showToast(msg, type = "") {
+  const t     = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = "show " + type;
+  setTimeout(() => t.className = "", 3000);
+}
+
+init();
+setInterval(async () => { await loadAll(); render(); }, 60000);
+</script>
+</body>
+</html>
