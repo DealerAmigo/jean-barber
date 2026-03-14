@@ -246,11 +246,11 @@
         <label class="form-label" for="inp-service">Servicio *</label>
         <select id="inp-service" class="form-select">
           <option value="">— Selecciona un servicio —</option>
-          <option value="Corte">Corte · 30 min · $25</option>
-          <option value="Arreglo de Barba">Arreglo de Barba · 20 min · $15</option>
-          <option value="Corte + Barba">Corte + Barba · 50 min · $35</option>
-          <option value="Skin Fade">Skin Fade · 45 min · $30</option>
-          <option value="Lineup">Lineup / Edge Up · 20 min · $15</option>
+          <option value="Corte Regular">Corte Regular · 60 min · $25</option>
+          <option value="Corte + Barba">Corte + Barba · 60 min · $30</option>
+          <option value="Arreglo de Barba">Arreglo de Barba · 60 min · $10</option>
+          <option value="Refine">Refine · 60 min · $25</option>
+          <option value="Cejas">Cejas · 60 min · $5</option>
         </select>
       </div>
       <div class="form-field">
@@ -313,11 +313,11 @@
   </div>
   <script>
     "use strict";
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzTCt71TakFw-s5stiqCNWxzy2b9F1ECusL2I4cTlrjQln3YcnQFpA0iqeLAc4FwooUXg/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBdy4w-iQ3GwRQGX0pEZFlNOmoyXcbu3PDE8wTqflz4v7IrEzQyRoWR0sBWNqTyBF57Q/exec";
     const BARBER_PHONE    = "17875301101";
     const CONFIRM_BASE    = "confirm.html";
     const PHONE_REGEX     = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,14}$/;
-    const FIXED_SLOTS     = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM","6:00 PM"];
+    const FIXED_SLOTS     = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM"];
     let selectedDate = null, selectedTime = null, isSubmitting = false;
     (function(){
       const track=document.getElementById("reviews-track"),dotsEl=document.getElementById("rev-dots"),prev=document.getElementById("rev-prev"),next=document.getElementById("rev-next");
@@ -378,13 +378,18 @@
       if(!selectedDate)return showFormError("Selecciona un día.");
       if(!selectedTime)return showFormError("Selecciona un horario.");
       isSubmitting=true;btn.disabled=true;btn.textContent="Enviando...";
-      let bookingId=null;
+      let bookingId=null,errorMsg=null;
       try{
         const p=new URLSearchParams({action:"create",name,phone,service,date:selectedDate,time:selectedTime,notes});
         const res=await fetch(APPS_SCRIPT_URL+"?"+p);
         const data=await res.json();
         if(data.ok)bookingId=data.id;
-      }catch(e){}
+        else errorMsg=data.error||"Error al agendar.";
+      }catch(e){errorMsg="Error de conexión.";}
+      if(errorMsg){
+        isSubmitting=false;btn.disabled=false;btn.textContent="Confirmar Solicitud de Cita →";
+        return showFormError(errorMsg);
+      }
       document.getElementById("form-wrapper").style.display="none";
       document.getElementById("confirm-phone").textContent=phone;
       document.getElementById("success-box").style.display="block";
@@ -402,7 +407,7 @@
     const chatData={name:"",phone:"",service:"",date:"",time:"",bookedTimes:[]};
     let chatDismissed=false,chatMode="idle",bookingStep=0;
     const BOOKING_FLOW=[
-      {bot:"¿Qué servicio quieres?",type:"options",key:"service",options:["Corte $25","Arreglo de Barba $15","Corte + Barba $35","Skin Fade $30","Lineup $15"]},
+      {bot:"¿Qué servicio quieres?",type:"options",key:"service",options:["Corte Regular $25","Corte + Barba $30","Arreglo de Barba $10","Refine $25","Cejas $5"]},
       {bot:"¿Qué día te va mejor?",type:"date"},
       {bot:"¿A qué hora?",type:"time_slots"},
       {bot:"Por último, ¿tu número de WhatsApp?",type:"input",key:"phone"}
@@ -485,7 +490,8 @@
         const res=await fetch(APPS_SCRIPT_URL+"?"+p);
         const data=await res.json();
         if(data.ok)bookingId=data.id;
-      }catch(e){console.warn("[Jean] Cita error:",e);}
+        else{addBotMsg("⚠ "+( data.error||"Error al agendar."));return;}
+      }catch(e){addBotMsg("⚠ Error de conexión.");return;}
       setTimeout(()=>{
         addBotMsg("✅ ¡Listo "+chatData.name+"! Jean te confirmará pronto.");
         if(bookingId){
