@@ -161,12 +161,10 @@
 <script>
 "use strict";
 
-// ── CONFIG ────────────────────────────────────────────────────
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzTCt71TakFw-s5stiqCNWxzy2b9F1ECusL2I4cTlrjQln3YcnQFpA0iqeLAc4FwooUXg/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBdy4w-iQ3GwRQGX0pEZFlNOmoyXcbu3PDE8wTqflz4v7IrEzQyRoWR0sBWNqTyBF57Q/exec";
 const BARBER_PHONE    = "17875301101";
-// ─────────────────────────────────────────────────────────────
 
-const DURACIONES = {"Corte":30,"Arreglo de Barba":20,"Corte + Barba":50,"Skin Fade":45,"Lineup":20};
+const DURACIONES = {"Corte Regular":60,"Corte + Barba":60,"Arreglo de Barba":60,"Refine":60,"Cejas":60};
 const DIAS_ES    = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 const MESES_ES   = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
@@ -178,20 +176,18 @@ async function init() {
   try {
     const res  = await fetch(APPS_SCRIPT_URL + "?action=booking&id=" + bookingId);
     const data = await res.json();
-    if (!data.ok)              { showError();     return; }
+    if (!data.ok)                    { showError();     return; }
     if (data.status === "Cancelado") { showCancelled(); return; }
     renderBooking(data);
   } catch(e) { showError(); }
 }
 
-// ── Convierte "2026-03-15" o timestamp a fecha legible sin problemas de timezone ──
 function parseLocalDate(raw) {
-  // raw puede ser "2026-03-15", "2026/03/15", o epoch number
   if (!raw) return null;
   const s = String(raw).substring(0,10).replace(/\//g,"-");
   const parts = s.split("-").map(Number);
   if (parts.length === 3) return new Date(parts[0], parts[1]-1, parts[2]);
-  return new Date(raw); // fallback
+  return new Date(raw);
 }
 
 function formatDate(raw) {
@@ -209,7 +205,6 @@ function renderBooking(b) {
   document.getElementById("d-price").textContent   = b.price ? "$"+b.price+".00" : "—";
   document.getElementById("d-date").textContent    = formatDate(b.date);
 
-  // Status pill
   const pill = document.getElementById("status-pill");
   if (b.status === "Confirmado") {
     pill.textContent  = "✓ Confirmado por Jean";
@@ -218,44 +213,13 @@ function renderBooking(b) {
     document.getElementById("conf-sub").textContent   = "Jean The Barber te espera";
   }
 
-  // Botón contactar Jean
   const waMsg = "Hola Jean, tengo una pregunta sobre mi cita "+b.id+" del "+formatDate(b.date)+" a las "+b.time+".";
   document.getElementById("btn-wa-jean").href = "https://wa.me/"+BARBER_PHONE+"?text="+encodeURIComponent(waMsg);
-
-  // Google Calendar
   document.getElementById("cal-link").href = buildCalendarUrl(b);
-
-  // Cancelar
   document.getElementById("btn-cancel-booking").onclick = () => cancelBooking(b.id, b.name);
 
-  // Mostrar card
   document.getElementById("state-loading").style.display = "none";
   document.getElementById("confirm-card").style.display  = "block";
-
-  // Notificar a Jean (solo primera vez que se ve esta cita en esta sesión)
-  if (b.status === "Pendiente") notifyJean(b);
-}
-
-// ── Abre WhatsApp a Jean con los detalles de la cita nueva ──
-function notifyJean(b) {
-  const key = "notified_"+b.id;
-  if (sessionStorage.getItem(key)) return; // ya notificó en esta sesión
-  sessionStorage.setItem(key, "1");
-  const panelUrl  = window.location.href.replace("confirm.html","panel.html");
-  const confirmUrl = window.location.href;
-  const msg =
-    "🔔 *Nueva cita recibida*\n\n"+
-    "👤 "+b.name+"\n"+
-    "✂ "+b.service+"\n"+
-    "📅 "+formatDate(b.date)+"\n"+
-    "🕐 "+b.time+"\n"+
-    "💵 $"+b.price+"\n"+
-    "📞 "+b.phone+"\n\n"+
-    "👉 Confirmar desde panel:\n"+panelUrl+"\n\n"+
-    "🔗 Ver cita del cliente:\n"+confirmUrl;
-  setTimeout(() => {
-    window.open("https://wa.me/"+BARBER_PHONE+"?text="+encodeURIComponent(msg), "_blank");
-  }, 1200);
 }
 
 function buildCalendarUrl(b) {
@@ -265,7 +229,7 @@ function buildCalendarUrl(b) {
   let [hours, minutes] = timePart.split(":").map(Number);
   if (meridiem==="PM" && hours!==12) hours += 12;
   if (meridiem==="AM" && hours===12) hours = 0;
-  const dur  = DURACIONES[b.service] || 30;
+  const dur  = DURACIONES[b.service] || 60;
   const pad  = n => String(n).padStart(2,"0");
   const y=d.getFullYear(), m=d.getMonth()+1, day=d.getDate();
   const startDt = y+""+pad(m)+""+pad(day)+"T"+pad(hours)+""+pad(minutes)+"00";
