@@ -99,11 +99,11 @@
     .date-pills::-webkit-scrollbar{height:2px}
     .date-pills::-webkit-scrollbar-thumb{background:var(--silver-dim)}
     .date-pill{flex-shrink:0;background:var(--dark-2);border:1px solid var(--dark-4);color:var(--silver-light);padding:.5rem .9rem;font-family:var(--font-ui);font-size:1.05rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .15s;white-space:nowrap}
-    .date-pill:hover{border-color:var(--silver-dim);color:var(--silver-light)}
+    .date-pill:hover{border-color:var(--silver-dim)}
     .date-pill.active{background:var(--dark-3);border-color:var(--silver);color:var(--white)}
     .time-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:5px;max-height:210px;overflow-y:auto}
     .time-btn{background:var(--dark-2);border:1px solid var(--dark-4);color:var(--silver-light);padding:.8rem .4rem;font-family:var(--font-ui);font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .15s}
-    .time-btn:hover{border-color:var(--silver-dim);color:var(--silver-light)}
+    .time-btn:hover{border-color:var(--silver-dim)}
     .time-btn.active{background:var(--gold);border-color:var(--gold);color:#000}
     .no-slots{text-align:center;padding:1.5rem;color:var(--silver-mid);font-size:.82rem;border:1px solid var(--dark-4);letter-spacing:.08em}
     .submit-btn{width:100%;background:var(--silver-light);border:none;color:#000;padding:1.4rem;font-family:var(--font-ui);font-size:1.15rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-top:.5rem}
@@ -120,9 +120,8 @@
     .confirm-link-btn:hover{background:var(--gold);color:#000}
     #wa-btn{position:fixed;bottom:2rem;right:1.8rem;z-index:999;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;background:#25D366;box-shadow:0 4px 20px rgba(0,0,0,.4);animation:wa-float 3s ease-in-out infinite;transition:transform .2s ease}
     #wa-btn:hover{transform:scale(1.12)}
-    #wa-btn:active{transform:scale(.96)}
     #wa-icon{width:30px;height:30px;color:#fff;flex-shrink:0}
-    @keyframes wa-float{0%,100%{transform:translateY(0);box-shadow:0 4px 20px rgba(37,211,102,.35),0 4px 20px rgba(0,0,0,.4)}50%{transform:translateY(-8px);box-shadow:0 12px 30px rgba(37,211,102,.5),0 8px 24px rgba(0,0,0,.3)}}
+    @keyframes wa-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
     footer{border-top:1px solid var(--dark-3);text-align:center;padding:3rem 1.5rem 4rem}
     .footer-rule{width:28px;height:1px;background:var(--gold);margin:0 auto 1.4rem}
     .footer-name{font-size:1.1rem;font-weight:600;letter-spacing:.28em;color:var(--silver-dim);text-transform:uppercase}
@@ -137,21 +136,16 @@
     #chat-bubble{width:62px;height:62px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.4);animation:chat-float 3s ease-in-out infinite;transition:transform .2s ease;flex-shrink:0;position:relative}
     #chat-bubble:hover{transform:scale(1.1)}
     #chat-bubble svg{width:28px;height:28px;color:#000}
-    #chat-notif{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#e53935;color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--black);animation:notif-pulse 1.5s ease-in-out infinite;z-index:2}
-    @keyframes notif-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
-    #chat-label{position:absolute;bottom:68px;left:0;background:var(--gold);color:#000;font-family:var(--font-ui);font-size:.8rem;font-weight:700;letter-spacing:.05em;padding:.4rem .8rem;white-space:nowrap;pointer-events:none;animation:label-bounce 2s ease-in-out infinite;clip-path:polygon(0 0,100% 0,100% 75%,18px 75%,10px 100%,2px 75%,0 75%);padding-bottom:1.2rem}
-    @keyframes label-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-    @keyframes chat-float{0%,100%{transform:translateY(0);box-shadow:0 4px 20px rgba(184,151,90,.35)}50%{transform:translateY(-8px);box-shadow:0 12px 30px rgba(184,151,90,.5)}}
+    #chat-notif{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#e53935;color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--black);z-index:2}
+    #chat-label{position:absolute;bottom:68px;left:0;background:var(--gold);color:#000;font-family:var(--font-ui);font-size:.8rem;font-weight:700;letter-spacing:.05em;padding:.4rem .8rem;white-space:nowrap;pointer-events:none;clip-path:polygon(0 0,100% 0,100% 75%,18px 75%,10px 100%,2px 75%,0 75%);padding-bottom:1.2rem}
+    @keyframes chat-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
     #chat-box{width:300px;background:var(--dark-1);border:1px solid rgba(184,151,90,.3);border-top:2px solid var(--gold);margin-bottom:.8rem;display:none;flex-direction:column;box-shadow:0 8px 32px rgba(0,0,0,.6);max-height:420px}
     #chat-box.open{display:flex}
     .chat-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1rem;border-bottom:1px solid var(--dark-3);background:var(--dark-2)}
     .chat-header-name{font-size:.85rem;font-weight:700;letter-spacing:.1em;color:var(--gold)}
     .chat-header-sub{font-size:.7rem;color:var(--silver-mid);margin-top:2px}
     .chat-close{background:none;border:none;color:var(--silver-mid);font-size:1.2rem;cursor:pointer;padding:0;line-height:1}
-    .chat-close:hover{color:var(--white)}
     .chat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem;max-height:260px}
-    .chat-messages::-webkit-scrollbar{width:2px}
-    .chat-messages::-webkit-scrollbar-thumb{background:var(--silver-dim)}
     .chat-msg{max-width:85%;padding:.65rem .9rem;font-size:.95rem;line-height:1.5;animation:msg-in .25s ease both}
     @keyframes msg-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
     .chat-msg.bot{background:var(--dark-3);color:var(--silver-light);border-radius:0 12px 12px 12px;align-self:flex-start}
@@ -162,8 +156,7 @@
     .chat-input-row{display:flex;gap:6px;padding:.7rem 1rem;border-top:1px solid var(--dark-3)}
     .chat-input{flex:1;background:var(--dark-2);border:1px solid var(--dark-4);color:var(--silver-light);padding:.55rem .8rem;font-family:var(--font-ui);font-size:.95rem;outline:none;border-radius:20px;transition:border-color .2s}
     .chat-input:focus{border-color:var(--gold)}
-    .chat-input::placeholder{color:var(--silver-dim)}
-    .chat-send{background:var(--gold);border:none;color:#000;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:1rem;transition:transform .15s}
+    .chat-send{background:var(--gold);border:none;color:#000;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .15s}
     .chat-send:hover{transform:scale(1.1)}
     @media(max-width:520px){#chat-widget{left:1rem;bottom:1.4rem}#chat-box{width:260px}}
   </style>
@@ -205,9 +198,9 @@
       </div>
     </div>
     <div class="reviews-controls reveal">
-      <button class="reviews-btn" id="rev-prev" aria-label="Anterior">&#8592;</button>
+      <button class="reviews-btn" id="rev-prev">&#8592;</button>
       <div class="reviews-dots" id="rev-dots"></div>
-      <button class="reviews-btn" id="rev-next" aria-label="Siguiente">&#8594;</button>
+      <button class="reviews-btn" id="rev-next">&#8594;</button>
     </div>
   </section>
   <section id="location" class="section">
@@ -215,14 +208,14 @@
     <h2 class="sec-title reveal">Encuéntranos</h2>
     <p class="sec-sub reveal">Toca el mapa para preguntarle a Jean la dirección.</p>
     <div class="map-card reveal">
-      <a href="https://wa.me/17875301101?text=Hola%20Jean%2C%20%C2%BFme%20puedes%20dar%20la%20direcci%C3%B3n%20de%20tu%20barbershop%3F" target="_blank" rel="noopener" style="display:block;text-decoration:none">
+      <a href="https://wa.me/19393175306?text=Hola%20Jean%2C%20%C2%BFme%20puedes%20dar%20la%20direcci%C3%B3n%20de%20tu%20barbershop%3F" target="_blank" rel="noopener" style="display:block;text-decoration:none">
         <div class="map-visual">
           <div class="map-pin"><div class="map-pulse"></div><div class="map-pin-dot"></div><div class="map-pin-shadow"></div></div>
         </div>
       </a>
       <div class="map-footer">
         <div class="map-address"><strong>Jean The Barber</strong>Puerto Rico · Dirección por confirmar</div>
-        <a class="map-cta" href="https://wa.me/17875301101?text=Hola%20Jean%2C%20%C2%BFme%20puedes%20dar%20la%20direcci%C3%B3n%20de%20tu%20barbershop%3F" target="_blank" rel="noopener">
+        <a class="map-cta" href="https://wa.me/19393175306?text=Hola%20Jean%2C%20%C2%BFme%20puedes%20dar%20la%20direcci%C3%B3n%20de%20tu%20barbershop%3F" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
           Preguntarle a Jean
         </a>
@@ -277,10 +270,8 @@
       <a id="confirm-link" class="confirm-link-btn" href="#" target="_blank">Ver detalles de mi cita →</a>
     </div>
   </section>
-  <a id="wa-btn" href="https://wa.me/17875301101?text=Hola%20Jean%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20informaci%C3%B3n%20sobre%20una%20cita." target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg id="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.848 0-3.58-.504-5.072-1.383l-.36-.214-4.56 1.074 1.11-4.42-.23-.373A9.953 9.953 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.3 5.5c-.22 0-.576.082-.878.408-.303.326-1.156 1.13-1.156 2.754 0 1.625 1.183 3.195 1.347 3.416.165.22 2.31 3.682 5.682 5.016 2.814 1.11 3.385.89 3.996.834.61-.055 1.97-.805 2.248-1.582.278-.777.278-1.443.194-1.582-.083-.138-.303-.22-.636-.386-.332-.165-1.97-.972-2.274-1.082-.303-.11-.524-.165-.745.165-.22.33-.856 1.082-1.05 1.303-.192.22-.385.248-.717.083-.332-.166-1.402-.517-2.67-1.648-.987-.88-1.653-1.966-1.847-2.298-.193-.33-.02-.51.146-.674.149-.148.332-.385.498-.578.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.578-.083-.165-.737-1.796-1.022-2.455-.268-.63-.543-.544-.745-.554-.192-.009-.413-.011-.634-.011z"/>
-    </svg>
+  <a id="wa-btn" href="https://wa.me/19393175306?text=Hola%20Jean%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20informaci%C3%B3n%20sobre%20una%20cita." target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg id="wa-icon" viewBox="0 0 32 32" fill="none"><path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.848 0-3.58-.504-5.072-1.383l-.36-.214-4.56 1.074 1.11-4.42-.23-.373A9.953 9.953 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.3 5.5c-.22 0-.576.082-.878.408-.303.326-1.156 1.13-1.156 2.754 0 1.625 1.183 3.195 1.347 3.416.165.22 2.31 3.682 5.682 5.016 2.814 1.11 3.385.89 3.996.834.61-.055 1.97-.805 2.248-1.582.278-.777.278-1.443.194-1.582-.083-.138-.303-.22-.636-.386-.332-.165-1.97-.972-2.274-1.082-.303-.11-.524-.165-.745.165-.22.33-.856 1.082-1.05 1.303-.192.22-.385.248-.717.083-.332-.166-1.402-.517-2.67-1.648-.987-.88-1.653-1.966-1.847-2.298-.193-.33-.02-.51.146-.674.149-.148.332-.385.498-.578.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.578-.083-.165-.737-1.796-1.022-2.455-.268-.63-.543-.544-.745-.554-.192-.009-.413-.011-.634-.011z"/></svg>
   </a>
   <footer>
     <div class="footer-rule"></div>
@@ -290,10 +281,7 @@
   <div id="chat-widget">
     <div id="chat-box">
       <div class="chat-header">
-        <div>
-          <div class="chat-header-name">✂ Asistente de Jean</div>
-          <div class="chat-header-sub">Reserva en segundos</div>
-        </div>
+        <div><div class="chat-header-name">✂ Asistente de Jean</div><div class="chat-header-sub">Reserva en segundos</div></div>
         <button class="chat-close" onclick="closeChat()">✕</button>
       </div>
       <div class="chat-messages" id="chat-messages"></div>
@@ -306,15 +294,13 @@
     <div id="chat-bubble" onclick="toggleChat()">
       <div id="chat-notif">1</div>
       <div id="chat-label">¡Nuevo mensaje!</div>
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
     </div>
   </div>
   <script>
     "use strict";
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBdy4w-iQ3GwRQGX0pEZFlNOmoyXcbu3PDE8wTqflz4v7IrEzQyRoWR0sBWNqTyBF57Q/exec";
-    const BARBER_PHONE    = "17875301101";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwp8KmlidAgy5QvoOOSOh2xdKM2inNUGuj02FTcuk9jUSqdnLjb054fdPH68qzezw82qA/exec";
+    const BARBER_PHONE    = "19393175306";
     const CONFIRM_BASE    = "confirm.html";
     const PHONE_REGEX     = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,14}$/;
     const FIXED_SLOTS     = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM"];
@@ -367,7 +353,7 @@
       btn.disabled=!(name.length>=2&&PHONE_REGEX.test(phone)&&service!==""&&selectedDate!==null&&selectedTime!==null)||isSubmitting;
     }
     function showFormError(msg){const el=document.getElementById("form-error");el.textContent="⚠  "+msg;el.style.display="block";el.scrollIntoView({behavior:"smooth",block:"nearest"})}
-    function clearFormError(){const el=document.getElementById("form-error");el.style.display="none";el.textContent=""}
+    function clearFormError(){document.getElementById("form-error").style.display="none"}
     async function handleSubmit(){
       if(isSubmitting)return;
       const btn=document.getElementById("submit-btn"),name=document.getElementById("inp-name").value.trim(),phone=document.getElementById("inp-phone").value.trim(),service=document.getElementById("inp-service").value,notes=document.getElementById("inp-notes").value.trim();
@@ -386,24 +372,19 @@
         if(data.ok)bookingId=data.id;
         else errorMsg=data.error||"Error al agendar.";
       }catch(e){errorMsg="Error de conexión.";}
-      if(errorMsg){
-        isSubmitting=false;btn.disabled=false;btn.textContent="Confirmar Solicitud de Cita →";
-        return showFormError(errorMsg);
-      }
+      if(errorMsg){isSubmitting=false;btn.disabled=false;btn.textContent="Confirmar Solicitud de Cita →";return showFormError(errorMsg);}
       document.getElementById("form-wrapper").style.display="none";
       document.getElementById("confirm-phone").textContent=phone;
       document.getElementById("success-box").style.display="block";
-      const confirmLinkEl=document.getElementById("confirm-link");
-      if(bookingId){confirmLinkEl.href=CONFIRM_BASE+"?id="+bookingId;confirmLinkEl.style.display="inline-block";}
-      else{confirmLinkEl.style.display="none";}
+      const cl=document.getElementById("confirm-link");
+      if(bookingId){cl.href=CONFIRM_BASE+"?id="+bookingId;cl.style.display="inline-block";}else{cl.style.display="none";}
     }
     document.getElementById("inp-name").addEventListener("input",validateForm);
     document.getElementById("inp-phone").addEventListener("input",validateForm);
     document.getElementById("inp-service").addEventListener("change",validateForm);
     const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");revObs.unobserve(e.target)}})},{threshold:0.1});
     document.querySelectorAll(".reveal").forEach(el=>revObs.observe(el));
-    validateForm();
-    renderDatePills();
+    validateForm();renderDatePills();
     const chatData={name:"",phone:"",service:"",date:"",time:"",bookedTimes:[]};
     let chatDismissed=false,chatMode="idle",bookingStep=0;
     const BOOKING_FLOW=[
@@ -414,7 +395,7 @@
     ];
     function addBotMsg(text){const msgs=document.getElementById("chat-messages");const div=document.createElement("div");div.className="chat-msg bot";div.textContent=text;msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight}
     function addUserMsg(text){const msgs=document.getElementById("chat-messages");const div=document.createElement("div");div.className="chat-msg user";div.textContent=text;msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight}
-    function clearOpts(){document.getElementById("chat-options").innerHTML="";const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");row.style.display="none";input.value="";input.onkeydown=null;send.onclick=null;}
+    function clearOpts(){document.getElementById("chat-options").innerHTML="";const row=document.getElementById("chat-input-row");row.style.display="none";document.getElementById("chat-input").value="";}
     function showInput(placeholder,fn){const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");row.style.display="flex";input.placeholder=placeholder;input.value="";setTimeout(()=>input.focus(),50);input.onkeydown=(e)=>{if(e.key==="Enter")fn()};send.onclick=fn;}
     function chatStart(){
       document.getElementById("chat-messages").innerHTML="";clearOpts();
@@ -426,83 +407,32 @@
           const opts=document.getElementById("chat-options");
           ["Sí, quiero reservar","Solo estoy mirando"].forEach(label=>{
             const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;
-            btn.onclick=()=>{
-              addUserMsg(label);clearOpts();
-              if(label==="Solo estoy mirando"){chatMode="lead";setTimeout(()=>{addBotMsg("¡Sin problema! ¿Me dejas tu WhatsApp para avisarte de promociones?");setTimeout(()=>showInput("Tu número de WhatsApp...",leadStep1),600)},600);}
+            btn.onclick=()=>{addUserMsg(label);clearOpts();
+              if(label==="Solo estoy mirando"){chatMode="lead";setTimeout(()=>{addBotMsg("¡Sin problema! ¿Me dejas tu WhatsApp?");setTimeout(()=>showInput("Tu número...",leadStep1),600)},600);}
               else{chatMode="booking";setTimeout(()=>{addBotMsg("¡Perfecto! ¿Cuál es tu nombre?");setTimeout(()=>showInput("Tu nombre...",bookingName),600)},600);}
-            };
-            opts.appendChild(btn);
+            };opts.appendChild(btn);
           });
         },700);
       },300);
     }
     function leadStep1(){const phone=document.getElementById("chat-input").value.trim();if(!phone)return;addUserMsg(phone);chatData.phone=phone;clearOpts();setTimeout(()=>{addBotMsg("¿Y cómo te llamas?");setTimeout(()=>showInput("Tu nombre...",leadStep2),600)},600);}
-    async function leadStep2(){
-      const name=document.getElementById("chat-input").value.trim();if(!name)return;
-      addUserMsg(name);chatData.name=name;clearOpts();
-      const p=new URLSearchParams({action:"create",name:chatData.name,phone:chatData.phone,service:"Lead",date:"N/A",time:"N/A",notes:"Solo mirando - follow up 2 semanas"});
-      fetch(APPS_SCRIPT_URL+"?"+p).catch(e=>console.warn("[Jean] Lead error:",e));
-      addBotMsg("¡Listo "+chatData.name+"! Jean te escribirá pronto con algo especial. 🔥");
-    }
+    async function leadStep2(){const name=document.getElementById("chat-input").value.trim();if(!name)return;addUserMsg(name);chatData.name=name;clearOpts();const p=new URLSearchParams({action:"create",name:chatData.name,phone:chatData.phone,service:"Lead",date:"N/A",time:"N/A",notes:"Solo mirando"});fetch(APPS_SCRIPT_URL+"?"+p).catch(()=>{});addBotMsg("¡Listo "+chatData.name+"! Jean te escribirá pronto. 🔥");}
     function bookingName(){const name=document.getElementById("chat-input").value.trim();if(!name)return;addUserMsg(name);chatData.name=name;clearOpts();bookingStep=0;setTimeout(()=>runStep(),500);}
     function runStep(){
       if(bookingStep>=BOOKING_FLOW.length){bookingFinish();return;}
       const s=BOOKING_FLOW[bookingStep];clearOpts();
-      setTimeout(()=>{
-        addBotMsg(s.bot);
-        setTimeout(()=>{
-          if(s.type==="options"){
-            const opts=document.getElementById("chat-options");
-            s.options.forEach(opt=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=opt;btn.onclick=()=>{addUserMsg(opt);chatData[s.key]=opt.split(" $")[0];clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});
-          }else if(s.type==="date"){
-            const opts=document.getElementById("chat-options");
-            const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
-            let count=0,offset=1;
-            while(count<7){
-              const d=new Date();d.setDate(d.getDate()+offset++);
-              if(d.getDay()===0)continue;
-              const mm=String(d.getMonth()+1).padStart(2,"0"),dd=String(d.getDate()).padStart(2,"0");
-              const label=days[d.getDay()]+" "+dd+"/"+mm,dateStr=d.getFullYear()+"-"+mm+"-"+dd;
-              const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;
-              btn.onclick=async()=>{
-                addUserMsg(label);chatData.date=dateStr;clearOpts();
-                try{const res=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+dateStr);const data=await res.json();if(data.ok)chatData.bookedTimes=data.booked;}catch(e){chatData.bookedTimes=[];}
-                bookingStep++;setTimeout(()=>runStep(),500);
-              };
-              opts.appendChild(btn);count++;
-            }
-          }else if(s.type==="time_slots"){
-            const opts=document.getElementById("chat-options");
-            const available=FIXED_SLOTS.filter(sl=>!(chatData.bookedTimes||[]).includes(sl));
-            if(available.length===0){addBotMsg("No hay horarios ese día. ¿Escogemos otro día?");bookingStep--;setTimeout(()=>runStep(),600);return;}
-            available.forEach(slot=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=slot;btn.onclick=()=>{addUserMsg(slot);chatData.time=slot;clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});
-          }else if(s.type==="input"){
-            showInput("Tu número de WhatsApp...",()=>{const val=document.getElementById("chat-input").value.trim();if(!val)return;addUserMsg(val);chatData[s.key]=val;clearOpts();bookingStep++;setTimeout(()=>runStep(),500);});
-          }
-        },400);
-      },400);
+      setTimeout(()=>{addBotMsg(s.bot);setTimeout(()=>{
+        if(s.type==="options"){const opts=document.getElementById("chat-options");s.options.forEach(opt=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=opt;btn.onclick=()=>{addUserMsg(opt);chatData[s.key]=opt.split(" $")[0];clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});}
+        else if(s.type==="date"){const opts=document.getElementById("chat-options");const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];let count=0,offset=1;while(count<7){const d=new Date();d.setDate(d.getDate()+offset++);if(d.getDay()===0)continue;const mm=String(d.getMonth()+1).padStart(2,"0"),dd=String(d.getDate()).padStart(2,"0");const label=days[d.getDay()]+" "+dd+"/"+mm,dateStr=d.getFullYear()+"-"+mm+"-"+dd;const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;btn.onclick=async()=>{addUserMsg(label);chatData.date=dateStr;clearOpts();try{const res=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+dateStr);const data=await res.json();if(data.ok)chatData.bookedTimes=data.booked;}catch(e){chatData.bookedTimes=[];}bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);count++;}}
+        else if(s.type==="time_slots"){const opts=document.getElementById("chat-options");const available=FIXED_SLOTS.filter(sl=>!(chatData.bookedTimes||[]).includes(sl));if(available.length===0){addBotMsg("No hay horarios ese día. ¿Escogemos otro?");bookingStep--;setTimeout(()=>runStep(),600);return;}available.forEach(slot=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=slot;btn.onclick=()=>{addUserMsg(slot);chatData.time=slot;clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});}
+        else if(s.type==="input"){showInput("Tu número de WhatsApp...",()=>{const val=document.getElementById("chat-input").value.trim();if(!val)return;addUserMsg(val);chatData[s.key]=val;clearOpts();bookingStep++;setTimeout(()=>runStep(),500);});}
+      },400);},400);
     }
     async function bookingFinish(){
       clearOpts();addBotMsg("Reservando tu cita...");
       let bookingId=null;
-      try{
-        const p=new URLSearchParams({action:"create",name:chatData.name,phone:chatData.phone,service:chatData.service,date:chatData.date,time:chatData.time,notes:"Via chatbot"});
-        const res=await fetch(APPS_SCRIPT_URL+"?"+p);
-        const data=await res.json();
-        if(data.ok)bookingId=data.id;
-        else{addBotMsg("⚠ "+( data.error||"Error al agendar."));return;}
-      }catch(e){addBotMsg("⚠ Error de conexión.");return;}
-      setTimeout(()=>{
-        addBotMsg("✅ ¡Listo "+chatData.name+"! Jean te confirmará pronto.");
-        if(bookingId){
-          setTimeout(()=>{
-            const msgs=document.getElementById("chat-messages");
-            const a=document.createElement("a");a.href=CONFIRM_BASE+"?id="+bookingId;a.target="_blank";a.className="chat-msg bot";
-            a.style.cssText="display:inline-block;color:var(--gold);text-decoration:underline;font-size:.85rem;margin-top:.2rem";
-            a.textContent="Ver detalles de tu cita →";msgs.appendChild(a);msgs.scrollTop=msgs.scrollHeight;
-          },600);
-        }
-      },600);
+      try{const p=new URLSearchParams({action:"create",name:chatData.name,phone:chatData.phone,service:chatData.service,date:chatData.date,time:chatData.time,notes:"Via chatbot"});const res=await fetch(APPS_SCRIPT_URL+"?"+p);const data=await res.json();if(data.ok)bookingId=data.id;else{addBotMsg("⚠ "+(data.error||"Error al agendar."));return;}}catch(e){addBotMsg("⚠ Error de conexión.");return;}
+      setTimeout(()=>{addBotMsg("✅ ¡Listo "+chatData.name+"! Jean te confirmará pronto.");if(bookingId){setTimeout(()=>{const msgs=document.getElementById("chat-messages");const a=document.createElement("a");a.href=CONFIRM_BASE+"?id="+bookingId;a.target="_blank";a.className="chat-msg bot";a.style.cssText="display:inline-block;color:var(--gold);text-decoration:underline;font-size:.85rem;margin-top:.2rem";a.textContent="Ver detalles →";msgs.appendChild(a);msgs.scrollTop=msgs.scrollHeight;},600);}},600);
     }
     function toggleChat(){const box=document.getElementById("chat-box");const isOpen=box.classList.contains("open");document.getElementById("chat-notif").style.display="none";document.getElementById("chat-label").style.display="none";if(isOpen){box.classList.remove("open")}else{box.classList.add("open");if(document.getElementById("chat-messages").children.length===0)chatStart();}}
     function closeChat(){document.getElementById("chat-box").classList.remove("open");chatDismissed=true;}
