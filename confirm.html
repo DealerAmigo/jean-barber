@@ -9,14 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{
-      --black:#080808;--dark-1:#101010;--dark-2:#171717;--dark-3:#202020;--dark-4:#2a2a2a;
-      --silver-dim:#3f3f3f;--silver-mid:#6e6e6e;--silver:#a8a8a8;--silver-light:#d8d8d8;
-      --white:#f0f0f0;--gold:#b8975a;--gold-dim:rgba(184,151,90,.1);
-      --green:#4caf7d;--red:#e05555;
-      --font-display:'Cormorant Garamond',Georgia,serif;
-      --font-ui:'Rajdhani',sans-serif;
-    }
+    :root{--black:#080808;--dark-1:#101010;--dark-2:#171717;--dark-3:#202020;--dark-4:#2a2a2a;--silver-dim:#3f3f3f;--silver-mid:#6e6e6e;--silver:#a8a8a8;--silver-light:#d8d8d8;--white:#f0f0f0;--gold:#b8975a;--gold-dim:rgba(184,151,90,.1);--green:#4caf7d;--red:#e05555;--font-display:'Cormorant Garamond',Georgia,serif;--font-ui:'Rajdhani',sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{background:var(--black);color:var(--silver-light);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2rem 1.2rem 4rem}
     #state-loading,#state-error{text-align:center;padding:5rem 1rem}
@@ -73,33 +66,21 @@
   </style>
 </head>
 <body>
-  <div id="state-loading">
-    <span class="state-icon">✂</span>
-    <p class="state-text loading-dots">Cargando tu cita</p>
-  </div>
-  <div id="state-error" style="display:none">
-    <span class="state-icon">!</span>
-    <p class="state-text">No pudimos encontrar esta cita.<br/>Contacta a Jean por WhatsApp.</p>
-  </div>
+  <div id="state-loading"><span class="state-icon">✂</span><p class="state-text loading-dots">Cargando tu cita</p></div>
+  <div id="state-error" style="display:none"><span class="state-icon">!</span><p class="state-text">No pudimos encontrar esta cita.<br/>Contacta a Jean por WhatsApp.</p></div>
   <div id="state-cancelled" style="display:none">
-    <div class="cancelled-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </div>
+    <div class="cancelled-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
     <h2 style="font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--white);margin-bottom:.5rem">Cita Cancelada</h2>
     <p style="color:var(--silver-mid);font-size:.9rem;margin-bottom:1.5rem">Esta cita ha sido cancelada.<br/>¿Quieres agendar de nuevo?</p>
     <a href="index.html" style="display:inline-block;padding:.8rem 2rem;border:1px solid var(--gold);color:var(--gold);font-family:var(--font-ui);font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none">Agendar Nueva Cita</a>
   </div>
   <div id="confirm-card" style="display:none">
     <div class="conf-header">
-      <div class="conf-check">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
-      </div>
+      <div class="conf-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg></div>
       <h1 class="conf-title" id="conf-title">¡Solicitud Recibida!</h1>
       <p class="conf-sub" id="conf-sub">Jean te confirmará por WhatsApp</p>
     </div>
-    <div class="status-row">
-      <span class="status-pill pill-pendiente" id="status-pill">Pendiente de confirmación</span>
-    </div>
+    <div class="status-row"><span class="status-pill pill-pendiente" id="status-pill">Pendiente de confirmación</span></div>
     <div class="details">
       <div class="detail-row">
         <div class="detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -142,20 +123,17 @@
         Cancelar mi Cita
       </button>
     </div>
-    <div class="conf-footer">
-      <div class="footer-rule"></div>
-      <p class="footer-name">Jean The Barber</p>
-    </div>
+    <div class="conf-footer"><div class="footer-rule"></div><p class="footer-name">Jean The Barber</p></div>
   </div>
 <script>
 "use strict";
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzk-RwVk_SpCEpivOdprzs_tJG55YjGNAoXX2ILcQ8Zo-O0NXb2A-MTadmiUgyifNYLaA/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw0Cw8Mx5sPG-dgWPC3tfoX0_1LU_vTD9Yl7H_65vXXnapnMXKCiAPfXw-ydAmUIScM1w/exec";
 const BARBER_PHONE    = "19393175306";
-const DURACIONES = {"Corte Regular":60,"Corte + Barba":60,"Arreglo de Barba":60,"Refine":60,"Cejas":60};
-const DIAS_ES    = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
-const MESES_ES   = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-const params    = new URLSearchParams(window.location.search);
-const bookingId = params.get("id");
+const DURACIONES      = {"Corte Regular":60,"Corte + Barba":60,"Arreglo de Barba":60,"Refine":60,"Cejas":60};
+const DIAS_ES         = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const MESES_ES        = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const params          = new URLSearchParams(window.location.search);
+const bookingId       = params.get("id");
 async function init() {
   if (!bookingId) { showError(); return; }
   try {
@@ -193,7 +171,7 @@ function renderBooking(b) {
   }
   const waMsg = "Hola Jean, tengo una pregunta sobre mi cita del "+formatDate(b.date)+" a las "+b.time+".";
   document.getElementById("btn-wa-jean").href = "https://wa.me/"+BARBER_PHONE+"?text="+encodeURIComponent(waMsg);
-  document.getElementById("cal-link").href = buildCalendarUrl(b);
+  document.getElementById("cal-link").href    = buildCalendarUrl(b);
   document.getElementById("btn-cancel-booking").onclick = () => cancelBooking(b.id, b.name);
   document.getElementById("state-loading").style.display = "none";
   document.getElementById("confirm-card").style.display  = "block";
