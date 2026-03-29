@@ -162,19 +162,22 @@
     <button class="hero-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Reserva tu Cita</button>
     <div class="scroll-hint"><div class="scroll-line"></div><span class="scroll-text">ver más</span></div>
   </section>
+
   <section id="gallery" class="section">
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Portafolio</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">El Trabajo</h2>
     <p class="sec-sub reveal">Cada corte es una declaración. Cada línea, intencional.</p>
-    <div class="gallery-grid reveal">
-      <div class="gallery-cell"><img src="" alt="Fade" onload="this.classList.add('loaded')"/><div class="gallery-ph"><span class="gallery-ph-num">01</span></div></div>
-      <div class="gallery-cell"><img src="" alt="Barba" onload="this.classList.add('loaded')"/><div class="gallery-ph"><span class="gallery-ph-num">02</span></div></div>
-      <div class="gallery-cell"><img src="" alt="Clásico" onload="this.classList.add('loaded')"/><div class="gallery-ph"><span class="gallery-ph-num">03</span></div></div>
-      <div class="gallery-cell"><img src="" alt="Skin fade" onload="this.classList.add('loaded')"/><div class="gallery-ph"><span class="gallery-ph-num">04</span></div></div>
-      <div class="gallery-cell"><img src="" alt="Lineup" onload="this.classList.add('loaded')"/><div class="gallery-ph"><span class="gallery-ph-num">05</span></div></div>
-      <div class="gallery-cell"><img src="" alt="Completo" onload="this.classList.add('loaded')"/><div class="gallery-ph"><span class="gallery-ph-num">06</span></div></div>
+    <div class="gallery-grid reveal" id="gallery-grid">
+      <!-- Placeholders — se reemplazan automáticamente cuando haya fotos en Drive -->
+      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">01</span></div></div>
+      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">02</span></div></div>
+      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">03</span></div></div>
+      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">04</span></div></div>
+      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">05</span></div></div>
+      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">06</span></div></div>
     </div>
   </section>
+
   <section id="reviews" class="section">
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Clientes</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">Lo Que Dicen</h2>
@@ -193,6 +196,7 @@
       <button class="reviews-btn" id="rev-next">&#8594;</button>
     </div>
   </section>
+
   <section id="location" class="section">
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Ubicación</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">Encuéntranos</h2>
@@ -210,6 +214,7 @@
       </div>
     </div>
   </section>
+
   <section id="booking" class="section">
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Reservaciones</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">Agenda tu Cita</h2>
@@ -258,14 +263,17 @@
       <a id="confirm-link" class="confirm-link-btn" href="#" target="_blank">Ver detalles de mi cita →</a>
     </div>
   </section>
+
   <a id="wa-btn" href="https://wa.me/19393175306?text=Hola%20Jean%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg id="wa-icon" viewBox="0 0 32 32" fill="none"><path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.51L4 29l7.686-1.81A12.94 12.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.848 0-3.58-.504-5.072-1.383l-.36-.214-4.56 1.074 1.11-4.42-.23-.373A9.953 9.953 0 0 1 6 15c0-5.523 4.477-10 10-10zm-3.3 5.5c-.22 0-.576.082-.878.408-.303.326-1.156 1.13-1.156 2.754 0 1.625 1.183 3.195 1.347 3.416.165.22 2.31 3.682 5.682 5.016 2.814 1.11 3.385.89 3.996.834.61-.055 1.97-.805 2.248-1.582.278-.777.278-1.443.194-1.582-.083-.138-.303-.22-.636-.386-.332-.165-1.97-.972-2.274-1.082-.303-.11-.524-.165-.745.165-.22.33-.856 1.082-1.05 1.303-.192.22-.385.248-.717.083-.332-.166-1.402-.517-2.67-1.648-.987-.88-1.653-1.966-1.847-2.298-.193-.33-.02-.51.146-.674.149-.148.332-.385.498-.578.165-.193.22-.33.33-.55.11-.22.055-.413-.027-.578-.083-.165-.737-1.796-1.022-2.455-.268-.63-.543-.544-.745-.554-.192-.009-.413-.011-.634-.011z"/></svg>
   </a>
+
   <footer>
     <div class="footer-rule"></div>
     <p class="footer-name">Jean The Barber</p>
     <p class="footer-note">Disponibilidad en tiempo real · Confirmación por WhatsApp</p>
   </footer>
+
   <div id="chat-widget">
     <div id="chat-box">
       <div class="chat-header">
@@ -285,6 +293,7 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
     </div>
   </div>
+
   <script>
   "use strict";
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw0Cw8Mx5sPG-dgWPC3tfoX0_1LU_vTD9Yl7H_65vXXnapnMXKCiAPfXw-ydAmUIScM1w/exec";
@@ -293,7 +302,42 @@
   const PHONE_REGEX     = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,14}$/;
   const FIXED_SLOTS     = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM"];
   let selectedDate=null,selectedTime=null,isSubmitting=false;
+
+  // ── GALERÍA DESDE DRIVE ────────────────────────────────────
+  async function loadGalleryPhotos() {
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL + "?action=photos");
+      const data = await res.json();
+      if (!data.ok || !data.photos || data.photos.length === 0) return; // Dejar placeholders
+      const grid = document.getElementById("gallery-grid");
+      grid.innerHTML = "";
+      data.photos.forEach((photo, i) => {
+        const num  = String(i + 1).padStart(2, "0");
+        const cell = document.createElement("div");
+        cell.className = "gallery-cell";
+        // Placeholder visible mientras carga la imagen
+        cell.innerHTML = '<div class="gallery-ph"><span class="gallery-ph-num">' + num + '</span></div>';
+        const img = document.createElement("img");
+        img.alt     = "Corte " + num;
+        img.loading = "lazy";
+        img.onload  = function() { this.classList.add("loaded"); };
+        img.onerror = function() {
+          // Si falla la URL principal, intentar la alternativa
+          if (this.src !== photo.urlAlt) { this.src = photo.urlAlt; }
+        };
+        img.src = photo.url;
+        cell.appendChild(img);
+        grid.appendChild(cell);
+      });
+    } catch (err) {
+      // Silencioso — los placeholders ya están en el HTML
+    }
+  }
+
+  // ── REVIEWS CAROUSEL ──────────────────────────────────────
   (function(){const track=document.getElementById("reviews-track"),dotsEl=document.getElementById("rev-dots"),prev=document.getElementById("rev-prev"),next=document.getElementById("rev-next");if(!track)return;const cards=Array.from(track.querySelectorAll(".review-card")),total=cards.length;let cur=0,timer=null;cards.forEach((_,i)=>{const d=document.createElement("button");d.className="reviews-dot"+(i===0?" active":"");d.type="button";d.onclick=()=>{stop();go(i);start()};dotsEl.appendChild(d)});function w(){return cards[0].offsetWidth+16}function go(i){cur=Math.max(0,Math.min(i,total-1));track.style.transform="translateX(-"+(cur*w())+"px)";dotsEl.querySelectorAll(".reviews-dot").forEach((d,j)=>d.classList.toggle("active",j===cur));prev.disabled=cur===0;next.disabled=cur===total-1}function start(){timer=setInterval(()=>go(cur<total-1?cur+1:0),4500)}function stop(){clearInterval(timer)}prev.onclick=()=>{stop();go(cur-1);start()};next.onclick=()=>{stop();go(cur+1);start()};let tx=0;track.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;stop()},{passive:true});track.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)go(dx<0?cur+1:cur-1);start()},{passive:true});window.addEventListener("resize",()=>go(cur));go(0);start();})();
+
+  // ── BOOKING FORM ──────────────────────────────────────────
   function renderDatePills(){const c=document.getElementById("date-pills");c.innerHTML="";const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];let count=0,offset=1;while(count<7){const d=new Date();d.setDate(d.getDate()+offset++);if(d.getDay()===0)continue;const yyyy=d.getFullYear(),mm=String(d.getMonth()+1).padStart(2,"0"),dd=String(d.getDate()).padStart(2,"0");const dateStr=yyyy+"-"+mm+"-"+dd,label=days[d.getDay()]+" "+dd+"/"+mm;const btn=document.createElement("button");btn.className="date-pill";btn.type="button";btn.textContent=label;btn.addEventListener("click",()=>{selectedDate=dateStr;selectedTime=null;document.querySelectorAll(".date-pill").forEach(p=>p.classList.remove("active"));btn.classList.add("active");loadTimes(dateStr);validateForm()});c.appendChild(btn);count++;}}
   async function loadTimes(date){const c=document.getElementById("time-grid");c.innerHTML='<div class="no-slots" style="border:none;padding:.5rem">Cargando...</div>';document.getElementById("time-field").style.display="block";let booked=[];try{const r=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+date);const d=await r.json();if(d.ok)booked=d.booked;}catch(e){}c.innerHTML="";let avail=0;FIXED_SLOTS.forEach(slot=>{if(booked.includes(slot))return;avail++;const btn=document.createElement("button");btn.className="time-btn";btn.type="button";btn.textContent=slot;btn.addEventListener("click",()=>{selectedTime=slot;document.querySelectorAll(".time-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");validateForm()});c.appendChild(btn);});if(avail===0)c.innerHTML='<div class="no-slots">No hay horarios disponibles este día.</div>';}
   function validateForm(){const name=document.getElementById("inp-name").value.trim(),phone=document.getElementById("inp-phone").value.trim(),service=document.getElementById("inp-service").value,btn=document.getElementById("submit-btn");btn.disabled=!(name.length>=2&&PHONE_REGEX.test(phone)&&service!==""&&selectedDate!==null&&selectedTime!==null)||isSubmitting;}
@@ -303,9 +347,12 @@
   document.getElementById("inp-name").addEventListener("input",validateForm);
   document.getElementById("inp-phone").addEventListener("input",validateForm);
   document.getElementById("inp-service").addEventListener("change",validateForm);
+
+  // ── REVEAL ON SCROLL ──────────────────────────────────────
   const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");revObs.unobserve(e.target)}})},{threshold:0.1});
   document.querySelectorAll(".reveal").forEach(el=>revObs.observe(el));
-  validateForm();renderDatePills();
+
+  // ── CHAT BOT ──────────────────────────────────────────────
   const chatData={name:"",phone:"",service:"",date:"",time:"",bookedTimes:[]};
   let chatDismissed=false,chatMode="idle",bookingStep=0;
   const BOOKING_FLOW=[{bot:"¿Qué servicio quieres?",type:"options",key:"service",options:["Corte Regular $25","Corte + Barba $30","Arreglo de Barba $10","Refine $25","Cejas $5"]},{bot:"¿Qué día te va mejor?",type:"date"},{bot:"¿A qué hora?",type:"time_slots"},{bot:"¿Tu número de WhatsApp?",type:"input",key:"phone"}];
@@ -322,6 +369,11 @@
   function toggleChat(){const box=document.getElementById("chat-box");const isOpen=box.classList.contains("open");document.getElementById("chat-notif").style.display="none";document.getElementById("chat-label").style.display="none";if(isOpen){box.classList.remove("open")}else{box.classList.add("open");if(document.getElementById("chat-messages").children.length===0)chatStart();}}
   function closeChat(){document.getElementById("chat-box").classList.remove("open");chatDismissed=true;}
   window.addEventListener("scroll",()=>{if(chatDismissed)return;const w=document.getElementById("chat-widget");const scrolled=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(scrolled>0.5)w.classList.add("visible");});
+
+  // ── INIT ──────────────────────────────────────────────────
+  validateForm();
+  renderDatePills();
+  loadGalleryPhotos(); // ← Carga fotos de Drive al abrir el site
   </script>
 </body>
 </html>
