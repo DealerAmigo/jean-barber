@@ -37,14 +37,25 @@
     .sec-label-text{font-size:.95rem;font-weight:700;letter-spacing:.5em;color:var(--gold);text-transform:uppercase}
     .sec-title{font-family:var(--font-display);font-size:clamp(2rem,7vw,3.8rem);font-weight:300;color:var(--white);margin-bottom:.5rem}
     .sec-sub{font-size:1.2rem;color:var(--silver);letter-spacing:.04em;margin-bottom:3rem}
+    /* ── GALERÍA CARRUSEL (mismo patrón que reviews) ── */
     #gallery{border-top:1px solid var(--dark-3)}
-    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
-    .gallery-cell{aspect-ratio:1;overflow:hidden;background:var(--dark-2);position:relative}
-    .gallery-cell img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:transform .6s ease,opacity .4s}
-    .gallery-cell img.loaded{opacity:1}
-    .gallery-cell:hover img{transform:scale(1.06)}
-    .gallery-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dark-2),var(--dark-3))}
-    .gallery-ph-num{font-family:var(--font-display);font-size:1.5rem;color:var(--silver-dim);opacity:.3;font-style:italic}
+    .gallery-track-wrap{position:relative;overflow:hidden}
+    .gallery-track-wrap::before,.gallery-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none}
+    .gallery-track-wrap::before{left:0;background:linear-gradient(to right,var(--black),transparent)}
+    .gallery-track-wrap::after{right:0;background:linear-gradient(to left,var(--black),transparent)}
+    .gallery-track{display:flex;gap:8px;transition:transform .45s cubic-bezier(.25,.46,.45,.94);will-change:transform}
+    .gallery-card{flex:0 0 300px;aspect-ratio:3/4;overflow:hidden;background:var(--dark-2)}
+    @media(max-width:520px){.gallery-card{flex:0 0 78vw}}
+    .gallery-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+    .gallery-card:hover img{transform:scale(1.04)}
+    .gallery-controls{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin-top:2rem}
+    .gallery-btn{background:transparent;border:1px solid var(--dark-4);color:var(--silver-mid);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:1rem}
+    .gallery-btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+    .gallery-btn:disabled{opacity:.2;cursor:default}
+    .gallery-dots{display:flex;gap:6px;align-items:center}
+    .gallery-dot{width:5px;height:5px;background:var(--dark-4);border-radius:50%;transition:all .3s;cursor:pointer;border:none;padding:0}
+    .gallery-dot.active{background:var(--gold);width:18px;border-radius:3px}
+    /* ── REVIEWS ── */
     #reviews{border-top:1px solid var(--dark-3)}
     .reviews-track-wrap{position:relative;overflow:hidden}
     .reviews-track-wrap::before,.reviews-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:50px;z-index:2;pointer-events:none}
@@ -120,7 +131,7 @@
     @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
     .reveal.on{opacity:1;transform:none}
-    @media(max-width:520px){.gallery-grid{grid-template-columns:repeat(2,1fr)}.form-card{padding:1.8rem 1.2rem}#wa-btn{bottom:1.4rem;right:1.2rem;width:52px;height:52px}#wa-icon{width:23px;height:23px}.review-card{flex:0 0 240px}.map-footer{flex-direction:column;align-items:flex-start}}
+    @media(max-width:520px){.form-card{padding:1.8rem 1.2rem}#wa-btn{bottom:1.4rem;right:1.2rem;width:52px;height:52px}#wa-icon{width:23px;height:23px}.review-card{flex:0 0 240px}.map-footer{flex-direction:column;align-items:flex-start}}
     #chat-widget{position:fixed;bottom:2rem;left:1.8rem;z-index:998;display:flex;flex-direction:column;align-items:flex-start;opacity:0;pointer-events:none;transition:opacity .4s ease,transform .4s ease;transform:translateY(20px)}
     #chat-widget.visible{opacity:1;pointer-events:all;transform:translateY(0)}
     #chat-bubble{width:62px;height:62px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.4);animation:chat-float 3s ease-in-out infinite;transition:transform .2s ease;flex-shrink:0;position:relative}
@@ -167,14 +178,18 @@
     <div class="sec-label reveal"><span class="sec-label-line"></span><span class="sec-label-text">Portafolio</span><span class="sec-label-line"></span></div>
     <h2 class="sec-title reveal">El Trabajo</h2>
     <p class="sec-sub reveal">Cada corte es una declaración. Cada línea, intencional.</p>
-    <div class="gallery-grid reveal" id="gallery-grid">
-      <!-- Placeholders — se reemplazan automáticamente cuando haya fotos en Drive -->
-      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">01</span></div></div>
-      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">02</span></div></div>
-      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">03</span></div></div>
-      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">04</span></div></div>
-      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">05</span></div></div>
-      <div class="gallery-cell"><div class="gallery-ph"><span class="gallery-ph-num">06</span></div></div>
+    <div class="gallery-track-wrap reveal">
+      <div class="gallery-track" id="gallery-track">
+        <!-- Para agregar fotos: copiar un bloque gallery-card y pegar el ID de Drive en el src -->
+        <div class="gallery-card"><img src="https://lh3.googleusercontent.com/d/1QUMhJpBDwr0KATJoMeyATS-gslVXvk5x" alt="Corte 01" loading="lazy"/></div>
+        <div class="gallery-card"><img src="https://lh3.googleusercontent.com/d/1OD8Dov8QPgEsJ5-cCwXd7zCFIjjZ9TUY" alt="Corte 02" loading="lazy"/></div>
+        <div class="gallery-card"><img src="https://lh3.googleusercontent.com/d/1yed8msbCa_XWAQ3sSF3mxJToO3KU8E7P" alt="Corte 03" loading="lazy"/></div>
+      </div>
+    </div>
+    <div class="gallery-controls reveal">
+      <button class="gallery-btn" id="gal-prev">&#8592;</button>
+      <div class="gallery-dots" id="gal-dots"></div>
+      <button class="gallery-btn" id="gal-next">&#8594;</button>
     </div>
   </section>
 
@@ -296,45 +311,33 @@
 
   <script>
   "use strict";
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw0Cw8Mx5sPG-dgWPC3tfoX0_1LU_vTD9Yl7H_65vXXnapnMXKCiAPfXw-ydAmUIScM1w/exec";
-  const BARBER_PHONE    = "19393175306";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKMAukdynomNxLow-d9r-zOGm84JfnbIZKQer2vIzGNkyOgrFfSusFxS8-WbyJIykx6A/exec";
   const CONFIRM_BASE    = "confirm.html";
   const PHONE_REGEX     = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,14}$/;
   const FIXED_SLOTS     = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM"];
   let selectedDate=null,selectedTime=null,isSubmitting=false;
 
-  // ── GALERÍA DESDE DRIVE ────────────────────────────────────
-  async function loadGalleryPhotos() {
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL + "?action=photos");
-      const data = await res.json();
-      if (!data.ok || !data.photos || data.photos.length === 0) return; // Dejar placeholders
-      const grid = document.getElementById("gallery-grid");
-      grid.innerHTML = "";
-      data.photos.forEach((photo, i) => {
-        const num  = String(i + 1).padStart(2, "0");
-        const cell = document.createElement("div");
-        cell.className = "gallery-cell";
-        // Placeholder visible mientras carga la imagen
-        cell.innerHTML = '<div class="gallery-ph"><span class="gallery-ph-num">' + num + '</span></div>';
-        const img = document.createElement("img");
-        img.alt     = "Corte " + num;
-        img.loading = "lazy";
-        img.onload  = function() { this.classList.add("loaded"); };
-        img.onerror = function() {
-          // Si falla la URL principal, intentar la alternativa
-          if (this.src !== photo.urlAlt) { this.src = photo.urlAlt; }
-        };
-        img.src = photo.url;
-        cell.appendChild(img);
-        grid.appendChild(cell);
-      });
-    } catch (err) {
-      // Silencioso — los placeholders ya están en el HTML
-    }
-  }
+  // ── CARRUSEL GALERÍA ──────────────────────────────────────
+  (function(){
+    const track=document.getElementById("gallery-track"),dotsEl=document.getElementById("gal-dots"),prev=document.getElementById("gal-prev"),next=document.getElementById("gal-next");
+    if(!track)return;
+    const cards=Array.from(track.querySelectorAll(".gallery-card")),total=cards.length;
+    let cur=0,timer=null;
+    cards.forEach((_,i)=>{const d=document.createElement("button");d.className="gallery-dot"+(i===0?" active":"");d.type="button";d.onclick=()=>{stop();go(i);start()};dotsEl.appendChild(d);});
+    function w(){return cards[0].offsetWidth+8}
+    function go(i){cur=Math.max(0,Math.min(i,total-1));track.style.transform="translateX(-"+(cur*w())+"px)";dotsEl.querySelectorAll(".gallery-dot").forEach((d,j)=>d.classList.toggle("active",j===cur));prev.disabled=cur===0;next.disabled=cur===total-1;}
+    function start(){timer=setInterval(()=>go(cur<total-1?cur+1:0),3000)}
+    function stop(){clearInterval(timer)}
+    prev.onclick=()=>{stop();go(cur-1);start()};
+    next.onclick=()=>{stop();go(cur+1);start()};
+    let tx=0;
+    track.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;stop()},{passive:true});
+    track.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)go(dx<0?cur+1:cur-1);start()},{passive:true});
+    window.addEventListener("resize",()=>go(cur));
+    go(0);start();
+  })();
 
-  // ── REVIEWS CAROUSEL ──────────────────────────────────────
+  // ── CARRUSEL REVIEWS ──────────────────────────────────────
   (function(){const track=document.getElementById("reviews-track"),dotsEl=document.getElementById("rev-dots"),prev=document.getElementById("rev-prev"),next=document.getElementById("rev-next");if(!track)return;const cards=Array.from(track.querySelectorAll(".review-card")),total=cards.length;let cur=0,timer=null;cards.forEach((_,i)=>{const d=document.createElement("button");d.className="reviews-dot"+(i===0?" active":"");d.type="button";d.onclick=()=>{stop();go(i);start()};dotsEl.appendChild(d)});function w(){return cards[0].offsetWidth+16}function go(i){cur=Math.max(0,Math.min(i,total-1));track.style.transform="translateX(-"+(cur*w())+"px)";dotsEl.querySelectorAll(".reviews-dot").forEach((d,j)=>d.classList.toggle("active",j===cur));prev.disabled=cur===0;next.disabled=cur===total-1}function start(){timer=setInterval(()=>go(cur<total-1?cur+1:0),4500)}function stop(){clearInterval(timer)}prev.onclick=()=>{stop();go(cur-1);start()};next.onclick=()=>{stop();go(cur+1);start()};let tx=0;track.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;stop()},{passive:true});track.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)go(dx<0?cur+1:cur-1);start()},{passive:true});window.addEventListener("resize",()=>go(cur));go(0);start();})();
 
   // ── BOOKING FORM ──────────────────────────────────────────
@@ -373,7 +376,6 @@
   // ── INIT ──────────────────────────────────────────────────
   validateForm();
   renderDatePills();
-  loadGalleryPhotos(); // ← Carga fotos de Drive al abrir el site
   </script>
 </body>
 </html>
