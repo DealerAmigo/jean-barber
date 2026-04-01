@@ -37,7 +37,7 @@
     .sec-label-text{font-size:.95rem;font-weight:700;letter-spacing:.5em;color:var(--gold);text-transform:uppercase}
     .sec-title{font-family:var(--font-display);font-size:clamp(2rem,7vw,3.8rem);font-weight:300;color:var(--white);margin-bottom:.5rem}
     .sec-sub{font-size:1.2rem;color:var(--silver);letter-spacing:.04em;margin-bottom:3rem}
-    /* ── GALERÍA CARRUSEL (mismo patrón que reviews) ── */
+    /* ── GALERÍA CARRUSEL ── */
     #gallery{border-top:1px solid var(--dark-3)}
     .gallery-track-wrap{position:relative;overflow:hidden}
     .gallery-track-wrap::before,.gallery-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none}
@@ -180,7 +180,6 @@
     <p class="sec-sub reveal">Cada corte es una declaración. Cada línea, intencional.</p>
     <div class="gallery-track-wrap reveal">
       <div class="gallery-track" id="gallery-track">
-        <!-- Para agregar fotos: copiar un bloque gallery-card y pegar el ID de Drive en el src -->
         <div class="gallery-card"><img src="https://lh3.googleusercontent.com/d/1QUMhJpBDwr0KATJoMeyATS-gslVXvk5x" alt="Corte 01" loading="lazy"/></div>
         <div class="gallery-card"><img src="https://lh3.googleusercontent.com/d/1OD8Dov8QPgEsJ5-cCwXd7zCFIjjZ9TUY" alt="Corte 02" loading="lazy"/></div>
         <div class="gallery-card"><img src="https://lh3.googleusercontent.com/d/1yed8msbCa_XWAQ3sSF3mxJToO3KU8E7P" alt="Corte 03" loading="lazy"/></div>
@@ -311,10 +310,10 @@
 
   <script>
   "use strict";
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKMAukdynomNxLow-d9r-zOGm84JfnbIZKQer2vIzGNkyOgrFfSusFxS8-WbyJIykx6A/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMP9qjdlCOSNGFgheJOyoIOS_svMPefdtC3E7F8lw9B-4RR4pvTgxx7FCEne7KBWxarA/exec";
   const CONFIRM_BASE    = "confirm.html";
   const PHONE_REGEX     = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,14}$/;
-  const FIXED_SLOTS     = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM"];
+  // ⚠ FIXED_SLOTS eliminado — ahora los slots vienen dinámicos del API según el día
   let selectedDate=null,selectedTime=null,isSubmitting=false;
 
   // ── CARRUSEL GALERÍA ──────────────────────────────────────
@@ -341,8 +340,67 @@
   (function(){const track=document.getElementById("reviews-track"),dotsEl=document.getElementById("rev-dots"),prev=document.getElementById("rev-prev"),next=document.getElementById("rev-next");if(!track)return;const cards=Array.from(track.querySelectorAll(".review-card")),total=cards.length;let cur=0,timer=null;cards.forEach((_,i)=>{const d=document.createElement("button");d.className="reviews-dot"+(i===0?" active":"");d.type="button";d.onclick=()=>{stop();go(i);start()};dotsEl.appendChild(d)});function w(){return cards[0].offsetWidth+16}function go(i){cur=Math.max(0,Math.min(i,total-1));track.style.transform="translateX(-"+(cur*w())+"px)";dotsEl.querySelectorAll(".reviews-dot").forEach((d,j)=>d.classList.toggle("active",j===cur));prev.disabled=cur===0;next.disabled=cur===total-1}function start(){timer=setInterval(()=>go(cur<total-1?cur+1:0),4500)}function stop(){clearInterval(timer)}prev.onclick=()=>{stop();go(cur-1);start()};next.onclick=()=>{stop();go(cur+1);start()};let tx=0;track.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;stop()},{passive:true});track.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)go(dx<0?cur+1:cur-1);start()},{passive:true});window.addEventListener("resize",()=>go(cur));go(0);start();})();
 
   // ── BOOKING FORM ──────────────────────────────────────────
-  function renderDatePills(){const c=document.getElementById("date-pills");c.innerHTML="";const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];let count=0,offset=1;while(count<7){const d=new Date();d.setDate(d.getDate()+offset++);if(d.getDay()===0)continue;const yyyy=d.getFullYear(),mm=String(d.getMonth()+1).padStart(2,"0"),dd=String(d.getDate()).padStart(2,"0");const dateStr=yyyy+"-"+mm+"-"+dd,label=days[d.getDay()]+" "+dd+"/"+mm;const btn=document.createElement("button");btn.className="date-pill";btn.type="button";btn.textContent=label;btn.addEventListener("click",()=>{selectedDate=dateStr;selectedTime=null;document.querySelectorAll(".date-pill").forEach(p=>p.classList.remove("active"));btn.classList.add("active");loadTimes(dateStr);validateForm()});c.appendChild(btn);count++;}}
-  async function loadTimes(date){const c=document.getElementById("time-grid");c.innerHTML='<div class="no-slots" style="border:none;padding:.5rem">Cargando...</div>';document.getElementById("time-field").style.display="block";let booked=[];try{const r=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+date);const d=await r.json();if(d.ok)booked=d.booked;}catch(e){}c.innerHTML="";let avail=0;FIXED_SLOTS.forEach(slot=>{if(booked.includes(slot))return;avail++;const btn=document.createElement("button");btn.className="time-btn";btn.type="button";btn.textContent=slot;btn.addEventListener("click",()=>{selectedTime=slot;document.querySelectorAll(".time-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");validateForm()});c.appendChild(btn);});if(avail===0)c.innerHTML='<div class="no-slots">No hay horarios disponibles este día.</div>';}
+  function renderDatePills() {
+    const c = document.getElementById("date-pills");
+    c.innerHTML = "";
+    const days = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+    let count = 0, offset = 1;
+    while (count < 8) {
+      const d = new Date();
+      d.setDate(d.getDate() + offset++);
+      if (d.getDay() === 0) continue; // Domingo cerrado
+      const yyyy = d.getFullYear(), mm = String(d.getMonth()+1).padStart(2,"0"), dd = String(d.getDate()).padStart(2,"0");
+      const dateStr = yyyy+"-"+mm+"-"+dd;
+      const label   = days[d.getDay()]+" "+dd+"/"+mm;
+      const btn = document.createElement("button");
+      btn.className = "date-pill";
+      btn.type = "button";
+      btn.textContent = label;
+      btn.addEventListener("click", () => {
+        selectedDate = dateStr;
+        selectedTime = null;
+        document.querySelectorAll(".date-pill").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        loadTimes(dateStr);
+        validateForm();
+      });
+      c.appendChild(btn);
+      count++;
+    }
+  }
+
+  // ── CARGA SLOTS DINÁMICOS DESDE EL API ───────────────────
+  async function loadTimes(date) {
+    const c = document.getElementById("time-grid");
+    c.innerHTML = '<div class="no-slots" style="border:none;padding:.5rem">Cargando...</div>';
+    document.getElementById("time-field").style.display = "block";
+    let slots = [], booked = [];
+    try {
+      const r = await fetch(APPS_SCRIPT_URL + "?action=availability&date=" + date);
+      const d = await r.json();
+      if (d.ok) { slots = d.slots || []; booked = d.booked || []; }
+    } catch(e) {}
+    c.innerHTML = "";
+    const bookedNorm = booked.map(t => t.trim().toUpperCase());
+    let avail = 0;
+    slots.forEach(slot => {
+      if (bookedNorm.includes(slot.trim().toUpperCase())) return;
+      avail++;
+      const btn = document.createElement("button");
+      btn.className = "time-btn";
+      btn.type = "button";
+      btn.textContent = slot;
+      btn.addEventListener("click", () => {
+        selectedTime = slot;
+        document.querySelectorAll(".time-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        validateForm();
+      });
+      c.appendChild(btn);
+    });
+    if (avail === 0) c.innerHTML = '<div class="no-slots">No hay horarios disponibles este día.</div>';
+  }
+
   function validateForm(){const name=document.getElementById("inp-name").value.trim(),phone=document.getElementById("inp-phone").value.trim(),service=document.getElementById("inp-service").value,btn=document.getElementById("submit-btn");btn.disabled=!(name.length>=2&&PHONE_REGEX.test(phone)&&service!==""&&selectedDate!==null&&selectedTime!==null)||isSubmitting;}
   function showFormError(msg){const el=document.getElementById("form-error");el.textContent="⚠  "+msg;el.style.display="block";el.scrollIntoView({behavior:"smooth",block:"nearest"})}
   function clearFormError(){document.getElementById("form-error").style.display="none"}
@@ -356,18 +414,23 @@
   document.querySelectorAll(".reveal").forEach(el=>revObs.observe(el));
 
   // ── CHAT BOT ──────────────────────────────────────────────
-  const chatData={name:"",phone:"",service:"",date:"",time:"",bookedTimes:[]};
+  const chatData={name:"",phone:"",service:"",date:"",time:"",bookedTimes:[],availableSlots:[]};
   let chatDismissed=false,chatMode="idle",bookingStep=0;
-  const BOOKING_FLOW=[{bot:"¿Qué servicio quieres?",type:"options",key:"service",options:["Corte Regular $25","Corte + Barba $30","Arreglo de Barba $10","Refine $25","Cejas $5"]},{bot:"¿Qué día te va mejor?",type:"date"},{bot:"¿A qué hora?",type:"time_slots"},{bot:"¿Tu número de WhatsApp?",type:"input",key:"phone"}];
+  const BOOKING_FLOW=[
+    {bot:"¿Qué servicio quieres?",type:"options",key:"service",options:["Corte Regular $25","Corte + Barba $30","Arreglo de Barba $10","Refine $25","Cejas $5"]},
+    {bot:"¿Qué día te va mejor?",type:"date"},
+    {bot:"¿A qué hora?",type:"time_slots"},
+    {bot:"¿Tu número de WhatsApp?",type:"input",key:"phone"}
+  ];
   function addBotMsg(text){const msgs=document.getElementById("chat-messages");const div=document.createElement("div");div.className="chat-msg bot";div.textContent=text;msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight}
   function addUserMsg(text){const msgs=document.getElementById("chat-messages");const div=document.createElement("div");div.className="chat-msg user";div.textContent=text;msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight}
   function clearOpts(){document.getElementById("chat-options").innerHTML="";document.getElementById("chat-input-row").style.display="none";document.getElementById("chat-input").value="";}
   function showInput(placeholder,fn){const row=document.getElementById("chat-input-row");const input=document.getElementById("chat-input");const send=document.getElementById("chat-send");row.style.display="flex";input.placeholder=placeholder;input.value="";setTimeout(()=>input.focus(),50);input.onkeydown=(e)=>{if(e.key==="Enter")fn()};send.onclick=fn;}
-  function chatStart(){document.getElementById("chat-messages").innerHTML="";clearOpts();Object.assign(chatData,{name:"",phone:"",service:"",date:"",time:"",bookedTimes:[]});chatMode="idle";bookingStep=0;setTimeout(()=>{addBotMsg("👋 ¡Hola! Soy el asistente de Jean. ¿Listo para tu próximo corte?");setTimeout(()=>{const opts=document.getElementById("chat-options");["Sí, quiero reservar","Solo estoy mirando"].forEach(label=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;btn.onclick=()=>{addUserMsg(label);clearOpts();if(label==="Solo estoy mirando"){chatMode="lead";setTimeout(()=>{addBotMsg("¡Sin problema! ¿Me dejas tu WhatsApp?");setTimeout(()=>showInput("Tu número...",leadStep1),600)},600);}else{chatMode="booking";setTimeout(()=>{addBotMsg("¡Perfecto! ¿Cuál es tu nombre?");setTimeout(()=>showInput("Tu nombre...",bookingName),600)},600);}};opts.appendChild(btn);});},700);},300);}
+  function chatStart(){document.getElementById("chat-messages").innerHTML="";clearOpts();Object.assign(chatData,{name:"",phone:"",service:"",date:"",time:"",bookedTimes:[],availableSlots:[]});chatMode="idle";bookingStep=0;setTimeout(()=>{addBotMsg("👋 ¡Hola! Soy el asistente de Jean. ¿Listo para tu próximo corte?");setTimeout(()=>{const opts=document.getElementById("chat-options");["Sí, quiero reservar","Solo estoy mirando"].forEach(label=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;btn.onclick=()=>{addUserMsg(label);clearOpts();if(label==="Solo estoy mirando"){chatMode="lead";setTimeout(()=>{addBotMsg("¡Sin problema! ¿Me dejas tu WhatsApp?");setTimeout(()=>showInput("Tu número...",leadStep1),600)},600);}else{chatMode="booking";setTimeout(()=>{addBotMsg("¡Perfecto! ¿Cuál es tu nombre?");setTimeout(()=>showInput("Tu nombre...",bookingName),600)},600);}};opts.appendChild(btn);});},700);},300);}
   function leadStep1(){const phone=document.getElementById("chat-input").value.trim();if(!phone)return;addUserMsg(phone);chatData.phone=phone;clearOpts();setTimeout(()=>{addBotMsg("¿Y cómo te llamas?");setTimeout(()=>showInput("Tu nombre...",leadStep2),600)},600);}
   async function leadStep2(){const name=document.getElementById("chat-input").value.trim();if(!name)return;addUserMsg(name);chatData.name=name;clearOpts();const p=new URLSearchParams({action:"create",name:chatData.name,phone:chatData.phone,service:"Lead",date:"N/A",time:"N/A",notes:"Solo mirando"});fetch(APPS_SCRIPT_URL+"?"+p).catch(()=>{});addBotMsg("¡Listo "+chatData.name+"! Jean te escribirá pronto. 🔥");}
   function bookingName(){const name=document.getElementById("chat-input").value.trim();if(!name)return;addUserMsg(name);chatData.name=name;clearOpts();bookingStep=0;setTimeout(()=>runStep(),500);}
-  function runStep(){if(bookingStep>=BOOKING_FLOW.length){bookingFinish();return;}const s=BOOKING_FLOW[bookingStep];clearOpts();setTimeout(()=>{addBotMsg(s.bot);setTimeout(()=>{if(s.type==="options"){const opts=document.getElementById("chat-options");s.options.forEach(opt=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=opt;btn.onclick=()=>{addUserMsg(opt);chatData[s.key]=opt.split(" $")[0];clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});}else if(s.type==="date"){const opts=document.getElementById("chat-options");const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];let count=0,offset=1;while(count<7){const d=new Date();d.setDate(d.getDate()+offset++);if(d.getDay()===0)continue;const mm=String(d.getMonth()+1).padStart(2,"0"),dd=String(d.getDate()).padStart(2,"0");const label=days[d.getDay()]+" "+dd+"/"+mm,dateStr=d.getFullYear()+"-"+mm+"-"+dd;const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;btn.onclick=async()=>{addUserMsg(label);chatData.date=dateStr;clearOpts();try{const res=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+dateStr);const data=await res.json();if(data.ok)chatData.bookedTimes=data.booked;}catch(e){chatData.bookedTimes=[];}bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);count++;}}else if(s.type==="time_slots"){const opts=document.getElementById("chat-options");const available=FIXED_SLOTS.filter(sl=>!(chatData.bookedTimes||[]).includes(sl));if(available.length===0){addBotMsg("No hay horarios ese día. ¿Escogemos otro?");bookingStep--;setTimeout(()=>runStep(),600);return;}available.forEach(slot=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=slot;btn.onclick=()=>{addUserMsg(slot);chatData.time=slot;clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});}else if(s.type==="input"){showInput("Tu número de WhatsApp...",()=>{const val=document.getElementById("chat-input").value.trim();if(!val)return;addUserMsg(val);chatData[s.key]=val;clearOpts();bookingStep++;setTimeout(()=>runStep(),500);});}},400);},400);}
+  function runStep(){if(bookingStep>=BOOKING_FLOW.length){bookingFinish();return;}const s=BOOKING_FLOW[bookingStep];clearOpts();setTimeout(()=>{addBotMsg(s.bot);setTimeout(()=>{if(s.type==="options"){const opts=document.getElementById("chat-options");s.options.forEach(opt=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=opt;btn.onclick=()=>{addUserMsg(opt);chatData[s.key]=opt.split(" $")[0];clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});}else if(s.type==="date"){const opts=document.getElementById("chat-options");const days=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];let count=0,offset=1;while(count<8){const d=new Date();d.setDate(d.getDate()+offset++);if(d.getDay()===0)continue;const mm=String(d.getMonth()+1).padStart(2,"0"),dd=String(d.getDate()).padStart(2,"0");const label=days[d.getDay()]+" "+dd+"/"+mm,dateStr=d.getFullYear()+"-"+mm+"-"+dd;const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=label;btn.onclick=async()=>{addUserMsg(label);chatData.date=dateStr;clearOpts();try{const res=await fetch(APPS_SCRIPT_URL+"?action=availability&date="+dateStr);const data=await res.json();if(data.ok){chatData.bookedTimes=data.booked||[];chatData.availableSlots=data.slots||[];}}catch(e){chatData.bookedTimes=[];chatData.availableSlots=[];}bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);count++;}}else if(s.type==="time_slots"){const opts=document.getElementById("chat-options");const bookedNorm=(chatData.bookedTimes||[]).map(t=>t.trim().toUpperCase());const available=(chatData.availableSlots||[]).filter(sl=>!bookedNorm.includes(sl.trim().toUpperCase()));if(available.length===0){addBotMsg("No hay horarios ese día. ¿Escogemos otro?");bookingStep--;setTimeout(()=>runStep(),600);return;}available.forEach(slot=>{const btn=document.createElement("button");btn.className="chat-opt";btn.textContent=slot;btn.onclick=()=>{addUserMsg(slot);chatData.time=slot;clearOpts();bookingStep++;setTimeout(()=>runStep(),500)};opts.appendChild(btn);});}else if(s.type==="input"){showInput("Tu número de WhatsApp...",()=>{const val=document.getElementById("chat-input").value.trim();if(!val)return;addUserMsg(val);chatData[s.key]=val;clearOpts();bookingStep++;setTimeout(()=>runStep(),500);});}},400);},400);}
   async function bookingFinish(){clearOpts();addBotMsg("Reservando tu cita...");let bookingId=null;try{const p=new URLSearchParams({action:"create",name:chatData.name,phone:chatData.phone,service:chatData.service,date:chatData.date,time:chatData.time,notes:"Via chatbot"});const res=await fetch(APPS_SCRIPT_URL+"?"+p);const data=await res.json();if(data.ok)bookingId=data.id;else{addBotMsg("⚠ "+(data.error||"Error al agendar."));return;}}catch(e){addBotMsg("⚠ Error de conexión.");return;}setTimeout(()=>{addBotMsg("✅ ¡Listo "+chatData.name+"! Jean te confirmará pronto.");if(bookingId){setTimeout(()=>{const msgs=document.getElementById("chat-messages");const a=document.createElement("a");a.href=CONFIRM_BASE+"?id="+bookingId;a.target="_blank";a.className="chat-msg bot";a.style.cssText="display:inline-block;color:var(--gold);text-decoration:underline;font-size:.85rem;margin-top:.2rem";a.textContent="Ver detalles →";msgs.appendChild(a);msgs.scrollTop=msgs.scrollHeight;},600);}},600);}
   function toggleChat(){const box=document.getElementById("chat-box");const isOpen=box.classList.contains("open");document.getElementById("chat-notif").style.display="none";document.getElementById("chat-label").style.display="none";if(isOpen){box.classList.remove("open")}else{box.classList.add("open");if(document.getElementById("chat-messages").children.length===0)chatStart();}}
   function closeChat(){document.getElementById("chat-box").classList.remove("open");chatDismissed=true;}
